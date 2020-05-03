@@ -8,31 +8,50 @@
 
 body {
   font-family: sans-serif;
-  padding: 1rem;
+  padding: 20px;
   background: rgb(250,250,250);
+}
+
+.editor {
+  display: flex;
+}
+
+.editor-toolbar {
+  border: 1px solid gray;
+  margin-right: .5rem;
+  padding: .5rem;
 }
 
 .grid {
   display: grid;
-  border-bottom: 1px solid black;
-  border-right: 1px solid black;
+  background-color: white;
+  border-bottom: 1px solid rgba(0,0,0,0.2);
+  border-right: 1px solid  rgba(0,0,0,0.2);
 }
 
 .object {
   background: black;
   position: relative;
   overflow: hidden;
-  z-index: -100;
+  z-index: 100;
   user-select: none;
   pointer-events: none;
   background-size: cover;
   background-repeat: no-repeat;
 }
 
+.object video {
+  min-width: 100%;
+  min-height: 100%;
+}
+
 .cursor {
   background: black;
+  pointer-events: none;
 }
 
 .placeholder {
-  border: 2px solid black
+  z-index: 100;
+  border: 2px solid rgb(21, 255, 0);
+  border-radius: 1px;
 }

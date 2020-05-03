@@ -1,5 +1,5 @@
 import React from "react";
-import Toolbar from "./Toolbar";
+import Settings from "./Settings";
 
 class Editor extends React.Component {
     constructor(props) {
@@ -8,7 +8,10 @@ class Editor extends React.Component {
         this.w = 1000;
         this.h = 1000;
         this.state = {
-            currentTool: 'img',
+            settings: {
+                currentTool: 'pen',
+                showGrid: true
+            },
             mouse: {},
 
             cursor: {
@@ -23,16 +26,30 @@ class Editor extends React.Component {
             ]
         }
 
+        this.gridRef = React.createRef()
+
         this.handleMouseMove = this.handleMouseMove.bind(this);
         this.handleMouseDown = this.handleMouseDown.bind(this);
         this.handleMouseUp = this.handleMouseUp.bind(this);
+        this.updateSetting = this.updateSetting.bind(this);
 
+    }
+
+    updateSetting(setting, value) {
+        this.setState((prevState) => {
+            if (prevState.settings[setting] !== null) {
+                prevState.settings[setting] = value;
+            } else {
+                console.error(`Attempted to update non-existing setting ${setting}`)
+            }
+            return prevState;
+        })
     }
 
     handleMouseDown(e) {
         this.setState((prev) => {
             prev.cursor.active = true;
-            if (prev.currentTool === 'img') {
+            if (prev.settings.currentTool === 'img') {
                 prev.placeholder.active = true
                 prev.placeholder.x = prev.cursor.x - 1
                 prev.placeholder.y = prev.cursor.y - 0
@@ -47,8 +64,8 @@ class Editor extends React.Component {
         this.setState((prev) => {
             prev.cursor.active = false;
             prev.placeholder.active = false
-            if (prev.currentTool === 'img') {
-                let img = { type: 'img', properties: { src: 'https://picsum.photos/500' }, x: prev.placeholder.x, y: prev.placeholder.y, w: prev.placeholder.w, h: prev.placeholder.h }
+            if (prev.settings.currentTool === 'img') {
+                let img = { type: 'img', properties: { src: 'https://picsum.photos/500' }, x: prev.placeholder.x + 1, y: prev.placeholder.y, w: prev.placeholder.w, h: prev.placeholder.h }
                 prev.objects.push(img)
             }
             return prev;
@@ -60,20 +77,21 @@ class Editor extends React.Component {
 
     handleMouseMove(e) {
         const cell = (this.w / this.gridSize);
-        const cx = Math.ceil(e.clientX / cell) - 1
-        const cy = Math.ceil(e.clientY / cell) - 2
+        let r = this.gridRef.current.getBoundingClientRect()
+        const cx = Math.ceil((e.clientX - r.left) / cell)
+        const cy = Math.ceil((e.clientY - r.top) / cell)
 
         this.setState((prev) => {
             prev.cursor.x = cx;
             prev.cursor.y = cy;
             prev.mouse = { x: e.clientX, y: e.clientY };
             if (prev.cursor.active) {
-                if (prev.currentTool === 'pen') {
+                if (prev.settings.currentTool === 'pen') {
                     let paint = { type: 'paint', properties: { fill: 'black' }, x: prev.cursor.x, y: prev.cursor.y, w: 1, h: 1 }
                     prev.objects.push(paint)
-                } else if (prev.currentTool = 'img') {
+                } else if (prev.settings.currentTool = 'img') {
                     prev.placeholder.w = prev.cursor.x - prev.placeholder.x
-                    prev.placeholder.h = prev.cursor.y - prev.placeholder.y
+                    prev.placeholder.h = (prev.cursor.y - prev.placeholder.y)
                 }
 
             }
@@ -88,7 +106,7 @@ class Editor extends React.Component {
             height: `${this.h}px`,
             gridTemplateColumns: `repeat(${this.gridSize}, 1fr)`,
             gridTemplateRows: `repeat(${this.gridSize}, 1fr)`,
-            backgroundImage: `linear-gradient(to bottom, black 0, black 1px, transparent 1px, transparent 100%), linear-gradient(to right, black 0, black 1px, transparent 1px, transparent 100%)`,
+            backgroundImage: `linear-gradient(to bottom, rgba(0,0,0,0.2) 0, rgba(0,0,0,0.2) 1px, transparent 1px, transparent 100%), linear-gradient(to right, rgba(0,0,0,0.2) 0, rgba(0,0,0,0.2) 1px, transparent 1px, transparent 100%)`,
             backgroundSize: `${this.w}px ${this.h / this.gridSize}px, ${this.h / this.gridSize}px ${this.w}px`
         }
 
@@ -100,6 +118,7 @@ class Editor extends React.Component {
             let content = null;
             if (obj.type === 'img') {
                 objectStyle.backgroundImage = `url(${obj.properties.src})`
+                //content = <video src='/picnic/0060_1.mp4' autoPlay loop muted></video>
             }
             return (
                 <div style={objectStyle} className='object'>
@@ -123,13 +142,17 @@ class Editor extends React.Component {
             placeholder = <div className='placeholder' style={placeholderStyle}></div>
         }
         return (
-            <>
-                <div style={gridStyle} className='grid' onDragStart={this.handleDragStart} onMouseMove={this.handleMouseMove} onMouseDown={this.handleMouseDown} onMouseUp={this.handleMouseUp}>
+            <div className='editor'>
+                <div className="editor-toolbar">
+                    <h2>Tools</h2>
+                    <Settings updateSetting={this.updateSetting} settings={this.state.settings}></Settings>
+                </div>
+                <div ref={this.gridRef} style={gridStyle} className='grid' onDragStart={this.handleDragStart} onMouseMove={this.handleMouseMove} onMouseDown={this.handleMouseDown} onMouseUp={this.handleMouseUp}>
                     {objects}
                     {cursor}
                     {placeholder}
                 </div>
-            </>
+            </div>
         )
     }
 }
