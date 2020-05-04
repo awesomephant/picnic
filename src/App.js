@@ -2,7 +2,7 @@ import React from 'react';
 import ModeSwitch from './ModeSwitch';
 import Editor from './Editor';
 import Cloth from './Cloth';
-import logo from  './logo.svg';
+import logo from './logo.svg';
 
 import {
   BrowserRouter as Router,
@@ -17,7 +17,7 @@ function App() {
     <Router>
       <Switch>
         <Route path='/artist'>
-            <Link to='/'>Home</Link>
+          <Link to='/'>Home</Link>
         </Route>
 
         <Route path='/editor'>
@@ -28,9 +28,11 @@ function App() {
           </div>
         </Route>
         <Route path='/'>
-          <nav>
-            <Link to='/artist'>Artist</Link>
-            <Link to='/editor'>Editor</Link>
+          <nav className='site-nav'>
+            <a href="#1">R1</a>
+            <a href="#1">Ready Meals</a>
+            <a href="#1">Date</a>
+            <a href="#1">Collective</a>
           </nav>
           <h1 className='site-title'>
             PICNIC
