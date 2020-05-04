@@ -8,10 +8,10 @@ function Asset({ url }) {
     const gltf = useLoader(GLTFLoader, url)
 
     const mesh = useRef()
-    useFrame(() => (mesh.current.rotation.y = mesh.current.rotation.y+0.0001))
-
+    useFrame(() => (mesh.current.rotation.y = mesh.current.rotation.y + 0.00001))
+    const s = 6;
     return (
-        <primitive ref={mesh} object={gltf.scene} dispose={null} rotation={[0, 30, 0]} scale={[5, 5, 5]} position={[0, -5, -15]} />
+        <primitive ref={mesh} object={gltf.scene} dispose={null} rotation={[0, 200, 0]} scale={[s, s, s]} position={[0, -5, -15]} />
     )
 }
 
@@ -32,10 +32,9 @@ export default function Cloth() {
 
     return (
         <div className='world'>
-            <Canvas camera={{ position: [0, 13, 9] }}>
-                <ambientLight intensity={1} />
-                <Suspense fallback={<Cube/>}>
-                <Asset url={test}></Asset>
+            <Canvas camera={{ position: [0, 8, 9] }} colorManagement={true}>
+                <Suspense fallback={<Cube />}>
+                    <Asset url={test}></Asset>
                 </Suspense>
             </Canvas>
         </div>

@@ -2,6 +2,7 @@ import React from 'react';
 import ModeSwitch from './ModeSwitch';
 import Editor from './Editor';
 import Cloth from './Cloth';
+import logo from  './logo.svg';
 
 import {
   BrowserRouter as Router,
@@ -31,8 +32,11 @@ function App() {
             <Link to='/artist'>Artist</Link>
             <Link to='/editor'>Editor</Link>
           </nav>
-          <Cloth>
-          </Cloth>
+          <h1 className='site-title'>
+            PICNIC
+            <img src={logo} alt='logo'></img>
+          </h1>
+          <Cloth></Cloth>
         </Route>
 
       </Switch>
