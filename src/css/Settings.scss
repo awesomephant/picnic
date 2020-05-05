@@ -1,19 +1,29 @@
 .settings {
-    display: block;
-    position: absolute;
-    width: 100%;
-    bottom: 0;
-    left: 0;
-    padding: 1rem;
-    mix-blend-mode: exclusion;
-    display: grid;
-    border-top: 1px solid gray;
     grid-template-columns: 1fr 1fr 1fr 1fr;
+
+    button {
+        appearance: none;
+        background: 0;
+        width: 100%;
+        padding: .3rem;
+        text-align-last: left;
+        border: 1px solid black;
+        &:hover {
+            &.danger{
+                background: red;
+            }
+            cursor: pointer;
+        }
+    }
+    .toggle {
+        &[data-active=true]{
+            background: black;
+            color: white;
+        }
+    }
 }
 .setting {
     margin-bottom: 1rem;
-    max-width: 100%;
-    color: white;
 }
 label {
     font-size: .9rem;

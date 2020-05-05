@@ -1,19 +1,18 @@
 .editor {
   display: flex;
   font-family: sans-serif;
-  background-color: rgb(8, 8, 8);
+  background-color: rgb(233, 232, 227);
   height: 100vh;
 }
 
 .editor-canvas {
   padding: 1rem;
+  padding-left: 0;
 }
 
 .editor-toolbar {
-  border: 1px solid gray;
-  padding: .5rem;
-  color: white;
-  flex-basis: 20rem;
+  padding: 1rem;
+  flex-basis: 8rem;
 }
 
 .grid {
@@ -21,6 +20,14 @@
   background-color: white;
   border-bottom: 1px solid rgba(0, 0, 0, 0.2);
   border-right: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+.artist-grid {
+  display: grid;
+  grid-template-columns: repeat(50, 1fr);
+  grid-template-rows: repeat(50, calc(100vw / 50));
+  width: 100%;
+  min-height: 100vh;
 }
 
 .object {
@@ -31,9 +38,10 @@
   background-size: cover;
   background-repeat: no-repeat;
 
-  &:hover {
-    outline: 1px solid red;
+  [data-outlines=true] & {
+    outline: 1px solid rgb(0, 255, 85);
   }
+
   &.img {
     background: black;
   }

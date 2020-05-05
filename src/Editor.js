@@ -15,6 +15,7 @@ class Editor extends React.Component {
             settings: {
                 currentTool: 'text',
                 showGrid: true,
+                showOutlines: true,
                 toolSettings: {}
             },
             mouse: {},
@@ -42,6 +43,7 @@ class Editor extends React.Component {
     updateSetting(setting, value) {
         this.setState((prevState) => {
             if (prevState.settings[setting] !== null) {
+                console.log(`${setting}, ${value}`)
                 prevState.settings[setting] = value;
             } else {
                 console.error(`Attempted to update non-existing setting ${setting}`)
@@ -119,8 +121,11 @@ class Editor extends React.Component {
             height: `${this.h}px`,
             gridTemplateColumns: `repeat(${this.gridSize}, 1fr)`,
             gridTemplateRows: `repeat(${this.gridSize}, 1fr)`,
-            backgroundImage: `linear-gradient(to bottom, rgba(0,0,0,0.2) 0, rgba(0,0,0,0.2) 1px, transparent 1px, transparent 100%), linear-gradient(to right, rgba(0,0,0,0.2) 0, rgba(0,0,0,0.2) 1px, transparent 1px, transparent 100%)`,
             backgroundSize: `${this.w}px ${this.h / this.gridSize}px, ${this.h / this.gridSize}px ${this.w}px`
+        }
+
+        if (this.state.settings.showGrid === true) {
+            gridStyle.backgroundImage = `linear-gradient(to bottom, rgba(0,0,0,0.2) 0, rgba(0,0,0,0.2) 1px, transparent 1px, transparent 100%), linear-gradient(to right, rgba(0,0,0,0.2) 0, rgba(0,0,0,0.2) 1px, transparent 1px, transparent 100%)`
         }
 
         const objects = this.state.objects.map((obj, i) => {
@@ -162,11 +167,9 @@ class Editor extends React.Component {
         return (
             <div className='editor'>
                 <div className="editor-toolbar">
-                    <h2>Tools</h2>
-                    <Settings updateSetting={this.updateSetting} settings={this.state.settings}></Settings>
-                    <button onClick={this.resetDrawing}>Reset</button>
+                    <Settings resetDrawing={this.resetDrawing} updateSetting={this.updateSetting} objects={this.state.objects} settings={this.state.settings}></Settings>
                 </div>
-                <div className="editor-canvas" onDragStart={this.handleDragStart} onMouseMove={this.handleMouseMove} onMouseDown={this.handleMouseDown} onMouseUp={this.handleMouseUp}>
+                <div className="editor-canvas" data-outlines={this.state.settings.showOutlines} onDragStart={this.handleDragStart} onMouseMove={this.handleMouseMove} onMouseDown={this.handleMouseDown} onMouseUp={this.handleMouseUp}>
                     <div ref={this.gridRef} style={gridStyle} className='grid'>
                         {objects}
                         {cursor}

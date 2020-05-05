@@ -1,6 +1,13 @@
 import React from 'react';
 import './css/Toolbox.scss';
 
+const tools = [
+    { value: 'rect', title: 'Rectangle' },
+    { value: 'img', title: 'Image' },
+    { value: 'text', title: 'Text' },
+    { value: 'embed', title: 'Embed' }
+]
+
 export default class Toolbox extends React.Component {
     constructor() {
         super();
@@ -14,18 +21,19 @@ export default class Toolbox extends React.Component {
     }
 
     render() {
-        const options = this.props.options.map((op) => {
+        const options = tools.map((op) => {
             let active = false;
-            if (this.props.value === op){
-              active = true;  
+            if (this.props.value === op.value) {
+                active = true;
             }
             return (
-                <li data-active={active} data-value={op} onClick={this.handleChange} key={`op-${op}`} className='option'>{op}</li>
+                <li data-active={active} data-value={op.value} onClick={this.handleChange} key={`op-${op.value}`} className='option'>
+                    {op.title}
+                </li>
             )
         })
         return (
             <div className='setting toolbox'>
-                <label>{this.props.title}</label>
                 <ul className="options">
                     {options}
                 </ul>
