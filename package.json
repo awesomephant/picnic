@@ -2,7 +2,6 @@
   "name": "picnic",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://awesomephant.github.io/picnic/",
   "dependencies": {
     "@mdi/js": "^5.1.45",
     "@testing-library/jest-dom": "^4.2.4",
