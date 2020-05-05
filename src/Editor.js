@@ -1,5 +1,6 @@
 import React from "react";
 import Settings from "./Settings";
+import "./css/editor.scss";
 
 class Editor extends React.Component {
     constructor(props) {
@@ -76,15 +77,18 @@ class Editor extends React.Component {
     }
 
     handleMouseMove(e) {
-        const cell = (this.w / this.gridSize);
         let r = this.gridRef.current.getBoundingClientRect()
-        const cx = Math.ceil((e.clientX - r.left) / cell)
-        const cy = Math.ceil((e.clientY - r.top) / cell)
+        const x = e.clientX;
+        const y = e.clientY;
+        const cell = (this.w / this.gridSize);
+        const cx = Math.ceil((x - r.left) / cell)
+        const cy = Math.ceil((y - r.top) / cell)
 
+        console.log(x)
         this.setState((prev) => {
             prev.cursor.x = cx;
             prev.cursor.y = cy;
-            prev.mouse = { x: e.clientX, y: e.clientY };
+            prev.mouse = { x: x, y: y };
             if (prev.cursor.active) {
                 if (prev.settings.currentTool === 'pen') {
                     let paint = { type: 'paint', properties: { fill: 'black' }, x: prev.cursor.x, y: prev.cursor.y, w: 1, h: 1 }

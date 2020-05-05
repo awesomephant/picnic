@@ -20,7 +20,7 @@ function App() {
           <Link to='/'>Home</Link>
         </Route>
 
-        <Route path='/editor'>
+        <Route path='/picnic/editor'>
           <div className="app">
             <header className="app-header"><h1>Editor</h1></header>
             <ModeSwitch></ModeSwitch>
