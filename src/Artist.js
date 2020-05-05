@@ -35,6 +35,12 @@ export default function Artist(props) {
 
     return (
         <main className='artist'>
+            <nav className="artist-meta">
+                <a href='#1'>Support*</a>
+                <a href='#1'>Info</a>
+                <a href='#1'>May 11</a>
+                <a href='#1'>Max Kohler</a>
+            </nav>
             <div className='artist-grid'>
                 {items}
             </div>

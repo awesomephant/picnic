@@ -39,18 +39,19 @@ body {
   }
 }
 
-.site-nav {
+.site-nav, .artist-meta {
   a {
     color: rgba(13, 11, 22, .9);
     position: absolute;
     letter-spacing: .01em;
     font-variation-settings: 'wght' 500, 'wdth' 105;
-    transition: 300ms;
     text-transform: uppercase;
     text-decoration: none;
     font-size: 3rem;
+    border-radius: 100%;
+    border: 2px solid transparent;
     &:hover, &:focus {
-      font-variation-settings: 'wght' 775, 'wdth' 105;
+      border: 2px solid black;
     }
     &:nth-of-type(1){
       left: 2rem;
