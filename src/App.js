@@ -17,12 +17,12 @@ function App() {
     <Router>
       <Switch>
         
-        <Route path='/picnic/artist'>
+        <Route path='/artist'>
           <Link to='/'>Home</Link>
           <Artist></Artist>
         </Route>
         
-        <Route path='/picnic/editor'>
+        <Route path='/editor'>
             <Editor></Editor>
         </Route>
 
