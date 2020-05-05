@@ -1,12 +1,18 @@
 import React from 'react';
-import ImageToggle from './ImageToggle.js';
+import Toolbox from './Toolbox.js';
 
-export default class Settings extends React.Component {
-    render() {
-        return (
-            <div className='settings'>
-                <ImageToggle updateSetting={this.props.updateSetting} options={['pen', 'img', 'video']} value={this.props.settings.currentTool} id='currentTool' title='Tool'></ImageToggle>
-            </div>
-        )
-    }
+export default function Settings(props) {
+
+    const tools = [
+        'pen',
+        'img',
+        'text',
+        'embed',
+    ]
+
+    return (
+        <div className='settings'>
+            <Toolbox updateSetting={props.updateSetting} options={tools} value={props.settings.currentTool} id='currentTool' title='Tool'></Toolbox>
+        </div>
+    )
 }

@@ -1,0 +1,21 @@
+.toolbox {
+    ul {
+        border: 1px solid white;
+    }
+    li {
+        border-bottom: 1px solid white;
+        list-style: none;
+        padding: .5em;
+        cursor: pointer;
+        &[data-active=true] {
+            background-color: white !important;
+            color: black;
+        }
+        &:hover, &:focus {
+            background-color: rgb(44, 44, 44);
+        }
+        &:last-child {
+            border-bottom: 0;
+        }
+    }
+}

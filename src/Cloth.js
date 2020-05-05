@@ -1,5 +1,5 @@
 import React, { useRef, Suspense } from "react";
-import { Canvas, useFrame, useThree } from 'react-three-fiber'
+import { Canvas, useFrame } from 'react-three-fiber'
 import { useLoader } from 'react-three-fiber'
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader'
 import test from "./gltf/picnic.gltf";
@@ -34,8 +34,6 @@ function Cube() {
 }
 
 export default function Cloth() {
-    const blanket = useRef()
-
     return (
         <div className='world'>
             <Canvas camera={{ position: [0, 10, 8] }} colorManagement={true}>

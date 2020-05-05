@@ -1,5 +1,4 @@
 import React from 'react';
-import ModeSwitch from './ModeSwitch';
 import Editor from './Editor';
 import Cloth from './Cloth';
 import logo from './logo.svg';
@@ -21,11 +20,7 @@ function App() {
         </Route>
 
         <Route path='/picnic/editor'>
-          <div className="app">
-            <header className="app-header"><h1>Editor</h1></header>
-            <ModeSwitch></ModeSwitch>
             <Editor></Editor>
-          </div>
         </Route>
         <Route path='/'>
           <nav className='site-nav'>

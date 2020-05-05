@@ -1,44 +1,59 @@
 .editor {
-    display: flex;
+  display: flex;
+  font-family: sans-serif;
+  background-color: rgb(8, 8, 8);
+  height: 100vh;
+}
+
+.editor-canvas {
+  padding: 1rem;
+}
+
+.editor-toolbar {
+  border: 1px solid gray;
+  padding: .5rem;
+  color: white;
+  flex-basis: 20rem;
+}
+
+.grid {
+  display: grid;
+  background-color: white;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+  border-right: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+.object {
+  position: relative;
+  overflow: hidden;
+  z-index: 100;
+  user-select: none;
+  background-size: cover;
+  background-repeat: no-repeat;
+
+  &:hover {
+    outline: 1px solid red;
   }
-  
-  .editor-toolbar {
-    border: 1px solid gray;
-    margin-right: .5rem;
-    padding: .5rem;
-  }
-  
-  .grid {
-    display: grid;
-    background-color: white;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
-    border-right: 1px solid rgba(0, 0, 0, 0.2);
-  }
-  
-  .object {
+  &.img {
     background: black;
-    position: relative;
-    overflow: hidden;
-    z-index: 100;
-    user-select: none;
-    pointer-events: none;
-    background-size: cover;
-    background-repeat: no-repeat;
   }
-  
-  .object video {
-    min-width: 100%;
-    min-height: 100%;
+  &.text {
+    color: black;
   }
-  
-  .cursor {
-    background: black;
-    pointer-events: none;
-  }
-  
-  .placeholder {
-    z-index: 100;
-    border: 2px solid rgb(21, 255, 0);
-    border-radius: 1px;
-  }
-  
+}
+
+.object video, .object iframe {
+  min-width: 100%;
+  min-height: 100%;
+}
+
+.cursor {
+  background: black;
+  pointer-events: none;
+}
+
+.placeholder {
+  z-index: 100;
+  border: 2px solid rgb(21, 255, 0);
+  border-radius: 1px;
+}
