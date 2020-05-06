@@ -24,9 +24,8 @@ function Asset({ url }) {
 function Cube() {
     const mesh = useRef()
     useFrame(() => (mesh.current.rotation.x = mesh.current.rotation.y += 0.01))
-
     return (
-        <mesh scale={[5, 5, 5]} ref={mesh}>
+        <mesh scale={[0, 0, 0]} ref={mesh}>
             <boxBufferGeometry attach="geometry" args={[1, 1, 1]} />
             <meshStandardMaterial attach="material" color={'pink'} />
         </mesh>

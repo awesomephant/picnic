@@ -83,7 +83,9 @@ class Editor extends React.Component {
         this.setState((prev) => {
             prev.cursor.active = false;
             prev.placeholder.active = false;
-            prev.objects = [...prev.objects, obj]
+            if (obj){
+                prev.objects = [...prev.objects, obj]
+            }
             localStorage.setItem('picnic-objects', JSON.stringify(prev.objects))
             return (prev)
         })
