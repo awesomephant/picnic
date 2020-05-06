@@ -73,9 +73,11 @@ class Editor extends React.Component {
             obj = { type: 'img', properties: { src: 'https://picsum.photos/500' }, x: this.state.placeholder.x + 1, y: this.state.placeholder.y, w: this.state.placeholder.w, h: this.state.placeholder.h }
             this.state.objects.push(obj)
         } else if (this.state.settings.currentTool === 'text') {
-            obj = { type: 'text', properties: { text: 'This paragraph of text is very very long so it would break into a longer column Whether you like cooking, love it or are indifferent to the task, most of us can agree that washing a lot of pots and pans after dinner is a drag. Wouldn’t it instead be easier if there was really only one? One skillet or one Dutch oven, one sheet pan, one pot? Wouldn’t that be great? Imagine the ease of it, to come home from work and turn on the oven, line a sheet pan with foil or parchment, tip onto it some vegetables, some protein, some ' }, x: this.state.placeholder.x + 1, y: this.state.placeholder.y, w: this.state.placeholder.w, h: this.state.placeholder.h }
+            obj = { type: 'text', properties: { text: 'This paragraph of text is very very long' }, x: this.state.placeholder.x + 1, y: this.state.placeholder.y, w: this.state.placeholder.w, h: this.state.placeholder.h }
         } else if (this.state.settings.currentTool === 'embed') {
             obj = { type: 'embed', properties: { url: '' }, x: this.state.placeholder.x + 1, y: this.state.placeholder.y, w: this.state.placeholder.w, h: this.state.placeholder.h }
+        } else if (this.state.settings.currentTool === 'rect') {
+            obj = { type: 'rect', properties: { background: 'pink' }, x: this.state.placeholder.x + 1, y: this.state.placeholder.y, w: this.state.placeholder.w, h: this.state.placeholder.h }
         }
 
         this.setState((prev) => {
@@ -142,6 +144,9 @@ class Editor extends React.Component {
             }
             if (obj.type === 'embed') {
                 content = <iframe title={`embed-${i}`} width="560" height="315" src="https://www.youtube.com/embed/IyNrcayUNfg?controls=0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            }
+            if (obj.type === 'rect') {
+                objectStyle.background = obj.properties.background
             }
             return (
                 <div style={objectStyle} key={`obj-${i}`} className={`object ${obj.type}`}>
