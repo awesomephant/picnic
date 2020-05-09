@@ -10,10 +10,10 @@ export default function Settings(props) {
                 <Toolbox updateSetting={props.updateSetting} value={props.settings.currentTool} id='currentTool' title='Tool'></Toolbox>
             </div>
             <div className='setting'>
-                <Toggle updateSetting={props.updateSetting} id='showGrid' value={props.settings.showGrid} label="Show Grid"></Toggle>
+                <Toggle updateSetting={props.updateSetting} id='showGrid' value={props.settings.showGrid} label="Grid"></Toggle>
             </div>
             <div className='setting'>
-                <Toggle updateSetting={props.updateSetting} id='showOutlines' value={props.settings.showOutlines} label="Show Outlines"></Toggle>
+                <Toggle updateSetting={props.updateSetting} id='showOutlines' value={props.settings.showOutlines} label="Outlines"></Toggle>
             </div>
             <div className='setting'>
                 <button className='danger' onClick={props.resetDrawing}>Reset</button>

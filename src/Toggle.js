@@ -1,4 +1,5 @@
 import React from 'react';
+import './css/Toggle.scss';
 
 export default class Toggle extends React.Component{
     constructor(props) {
@@ -7,7 +8,6 @@ export default class Toggle extends React.Component{
     }
 
     handleClick() {
-        console.log(this.props.value)
         if (this.props.value === true){
             this.props.updateSetting(this.props.id, false)
         } else {
@@ -15,8 +15,14 @@ export default class Toggle extends React.Component{
         }
     }
     render() {
+        let verb = '';
+        if (this.props.value === true){
+            verb = 'Hide'
+        } else {
+            verb = 'Show'
+        }
         return (
-            <button className='toggle' onClick={this.handleClick} data-active={this.props.value}>{this.props.label}</button>
+            <button className='toggle' onClick={this.handleClick} data-active={this.props.value}>{verb} {this.props.label}</button>
         )
     }
 }

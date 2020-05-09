@@ -1,8 +1,8 @@
 .editor {
   display: flex;
-  font-family: sans-serif;
-  background-color: rgb(233, 232, 227);
+  background-color: rgb(255, 255, 255);
   height: 100vh;
+  font-family: chicago;
 }
 
 .editor-canvas {
@@ -18,8 +18,7 @@
 .grid {
   display: grid;
   background-color: white;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
-  border-right: 1px solid rgba(0, 0, 0, 0.2);
+  border: 1px solid black;
 }
 
 .artist-grid {

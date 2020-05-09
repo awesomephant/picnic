@@ -17,7 +17,7 @@ export default function ObjectSettings(props) {
                 settings.push(
                     <div className='setting'>
                         <label htmlFor={key}>{key}</label>
-                        <input onChange={(e) => handleUpdate(key, e.target.value)} value={p} type='color'></input>)
+                        <input onChange={(e) => handleUpdate(key, e.target.value)} value={p} type='color'></input>
                 </div>
                 )
             } else if (key === 'text') {
@@ -27,7 +27,7 @@ export default function ObjectSettings(props) {
                         <textarea onChange={(e) => handleUpdate(key, e.target.value)} value={p}></textarea>
                     </div>
                 )
-            } else if (typeof (p) === 'string') {
+            } else if (typeof (p) === 'string' && key !== 'id' && key !== 'type') {
                 settings.push(
                     <div className='setting'>
                         <label htmlFor={key}>{key}</label>
@@ -50,7 +50,7 @@ export default function ObjectSettings(props) {
             <h2>Object Settings</h2>
             {settings}
             {settings.length > 0 &&
-                <button onClick={handleDelete} className='button danger'>Delete</button>
+                <button onClick={handleDelete} className='button danger'>Delete Object</button>
             }
         </div>
     )
