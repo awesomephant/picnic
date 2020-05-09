@@ -13,7 +13,7 @@ export default function ObjectSettings(props) {
     if (props.object !== null) {
         for (const key in props.object) {
             let p = props.object[key]
-            if (key === 'background') {
+            if (key === 'background'|| key==='color') {
                 settings.push(
                     <div className='setting'>
                         <label htmlFor={key}>{key}</label>

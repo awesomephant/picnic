@@ -107,7 +107,7 @@ class Editor extends React.Component {
         if (this.state.settings.currentTool === 'img') {
             obj = { id: id, type: 'img', src: 'https://picsum.photos/500', x: this.state.placeholder.x + 1, y: this.state.placeholder.y, w: this.state.placeholder.w, h: this.state.placeholder.h }
         } else if (this.state.settings.currentTool === 'text') {
-            obj = { id: id, type: 'text', fontSize: 18, fontWeight: 200, fontFamily: 'Helvetica', lineHeight: 1.1, letterSpacing: 0, text: 'This paragraph of text is very very long', x: this.state.placeholder.x + 1, y: this.state.placeholder.y, w: this.state.placeholder.w, h: this.state.placeholder.h }
+            obj = { id: id, type: 'text', color: 'red', fontSize: 18, fontWeight: 200, fontFamily: 'Helvetica', lineHeight: 1.1, letterSpacing: 0, text: 'This paragraph of text is very very long', x: this.state.placeholder.x + 1, y: this.state.placeholder.y, w: this.state.placeholder.w, h: this.state.placeholder.h }
         } else if (this.state.settings.currentTool === 'embed') {
             obj = { id: id, type: 'embed', url: ' ', x: this.state.placeholder.x + 1, y: this.state.placeholder.y, w: this.state.placeholder.w, h: this.state.placeholder.h }
         } else if (this.state.settings.currentTool === 'rect') {
@@ -185,6 +185,7 @@ class Editor extends React.Component {
                 objectStyle.fontWeight = obj.fontWeight
                 objectStyle.fontFamily = obj.fontFamily
                 objectStyle.lineHeight = obj.lineHeight
+                objectStyle.color = obj.color
                 objectStyle.letterSpacing = `${obj.letterSpacing}em`
                 content = obj.text
             }
