@@ -23,7 +23,7 @@ export default function ObjectSettings(props) {
                 settings.push(
                     <div className='setting'>
                         <label htmlFor={key}>{key}</label>
-                        <input onChange={(e) => handleUpdate(key, e.target.value * 1)} value={p} type='number'></input>
+                        <input onChange={(e) => handleUpdate(key, e.target.value * 1)} value={p} min='1' type='number'></input>
                     </div>
                 )
             }

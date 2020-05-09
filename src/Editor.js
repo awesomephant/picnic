@@ -65,9 +65,10 @@ class Editor extends React.Component {
         })
     }
     updateObject(id, setting, value) {
+        console.log(this.state.objects[id])
         console.log(`Attempting to set ${setting} to ${value} on ${id}`)
         this.setState((prev) => {
-            if (prev.objects[id] && prev.objects[id][setting]) {
+            if (prev.objects[id] && prev.objects[id][setting] !== undefined) {
                 console.log(`${id}: ${setting} => ${value}`)
                 prev.objects[id][setting] = value;
             } else {
@@ -99,7 +100,7 @@ class Editor extends React.Component {
         } else if (this.state.settings.currentTool === 'text') {
             obj = { id: id, type: 'text', text: 'This paragraph of text is very very long', x: this.state.placeholder.x + 1, y: this.state.placeholder.y, w: this.state.placeholder.w, h: this.state.placeholder.h }
         } else if (this.state.settings.currentTool === 'embed') {
-            obj = { id: id, type: 'embed', url: '', x: this.state.placeholder.x + 1, y: this.state.placeholder.y, w: this.state.placeholder.w, h: this.state.placeholder.h }
+            obj = { id: id, type: 'embed', url: ' ', x: this.state.placeholder.x + 1, y: this.state.placeholder.y, w: this.state.placeholder.w, h: this.state.placeholder.h }
         } else if (this.state.settings.currentTool === 'rect') {
             obj = { id: id, type: 'rect', background: 'pink', x: this.state.placeholder.x + 1, y: this.state.placeholder.y, w: this.state.placeholder.w, h: this.state.placeholder.h }
         }
@@ -174,7 +175,7 @@ class Editor extends React.Component {
                 content = obj.text
             }
             if (obj.type === 'embed') {
-                content = <iframe title={`embed`} width="560" height="315" src={obj.url} frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                content = <iframe title={`embed`} width="560" height="315" src={obj.url} frameBorder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
             }
             if (obj.type === 'rect') {
                 objectStyle.background = obj.background

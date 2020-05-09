@@ -62,6 +62,10 @@
   pointer-events: none;
 }
 
+.object[data-selected='true'] iframe{
+  pointer-events: all;
+}
+
 .cursor {
   background: black;
   pointer-events: none;
