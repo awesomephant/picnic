@@ -5,7 +5,8 @@ const tools = [
     { value: 'rect', title: 'Rectangle' },
     { value: 'img', title: 'Image' },
     { value: 'text', title: 'Text' },
-    { value: 'embed', title: 'Embed' }
+    { value: 'embed', title: 'Embed' },
+    { value: 'edit', title: 'Edit' }
 ]
 
 export default class Toolbox extends React.Component {

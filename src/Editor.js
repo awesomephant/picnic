@@ -13,10 +13,18 @@ class Editor extends React.Component {
 
         this.state = {
             settings: {
-                currentTool: 'text',
+                currentTool: 'rect',
                 showGrid: true,
                 showOutlines: true,
-                toolSettings: {}
+                toolSettings: {
+                    rect: {
+                        fill: 'green'
+                    },
+                    img: {
+                        src: '',
+                        filename: ''
+                    }
+                }
             },
             mouse: {},
             cursor: {
@@ -27,7 +35,7 @@ class Editor extends React.Component {
             placeholder: {
                 x: 0, y: 2, w: 10, h: 10, active: false
             },
-            objects: savedObjects || []
+            objects: savedObjects || {}
         }
 
 
@@ -37,8 +45,10 @@ class Editor extends React.Component {
         this.handleMouseUp = this.handleMouseUp.bind(this);
         this.updateSetting = this.updateSetting.bind(this);
         this.resetDrawing = this.resetDrawing.bind(this);
+        this.handleObjectClick = this.handleObjectClick.bind(this);
 
     }
+    generateID() { return '' + Math.random().toString(36).substr(2, 9); };
 
     updateSetting(setting, value) {
         this.setState((prevState) => {
@@ -66,25 +76,25 @@ class Editor extends React.Component {
     }
 
     handleMouseUp(e) {
-        e.preventDefault()
-
         let obj;
+        const id = this.generateID()
+        
         if (this.state.settings.currentTool === 'img') {
-            obj = { type: 'img', properties: { src: 'https://picsum.photos/500' }, x: this.state.placeholder.x + 1, y: this.state.placeholder.y, w: this.state.placeholder.w, h: this.state.placeholder.h }
-            this.state.objects.push(obj)
+            obj = { id: id, type: 'img', properties: { src: 'https://picsum.photos/500' }, x: this.state.placeholder.x + 1, y: this.state.placeholder.y, w: this.state.placeholder.w, h: this.state.placeholder.h }
         } else if (this.state.settings.currentTool === 'text') {
-            obj = { type: 'text', properties: { text: 'This paragraph of text is very very long' }, x: this.state.placeholder.x + 1, y: this.state.placeholder.y, w: this.state.placeholder.w, h: this.state.placeholder.h }
+            obj = { id: id, type: 'text', properties: { text: 'This paragraph of text is very very long' }, x: this.state.placeholder.x + 1, y: this.state.placeholder.y, w: this.state.placeholder.w, h: this.state.placeholder.h }
         } else if (this.state.settings.currentTool === 'embed') {
-            obj = { type: 'embed', properties: { url: '' }, x: this.state.placeholder.x + 1, y: this.state.placeholder.y, w: this.state.placeholder.w, h: this.state.placeholder.h }
+            obj = { id: id, type: 'embed', properties: { url: '' }, x: this.state.placeholder.x + 1, y: this.state.placeholder.y, w: this.state.placeholder.w, h: this.state.placeholder.h }
         } else if (this.state.settings.currentTool === 'rect') {
-            obj = { type: 'rect', properties: { background: 'pink' }, x: this.state.placeholder.x + 1, y: this.state.placeholder.y, w: this.state.placeholder.w, h: this.state.placeholder.h }
+            obj = { id: id, type: 'rect', properties: { background: 'pink' }, x: this.state.placeholder.x + 1, y: this.state.placeholder.y, w: this.state.placeholder.w, h: this.state.placeholder.h }
         }
 
         this.setState((prev) => {
+            console.log('ss')
             prev.cursor.active = false;
             prev.placeholder.active = false;
-            if (obj){
-                prev.objects = [...prev.objects, obj]
+            if (obj) {
+                prev.objects[id] = obj;
             }
             localStorage.setItem('picnic-objects', JSON.stringify(prev.objects))
             return (prev)
@@ -94,6 +104,13 @@ class Editor extends React.Component {
 
     handleDragStart(e) {
         e.preventDefault()
+    }
+
+    handleObjectClick(i) {
+        console.log(i)
+        this.setState((prev) => {
+            prev.objects[i].selected = true;
+        })
     }
 
     handleMouseMove(e) {
@@ -109,13 +126,12 @@ class Editor extends React.Component {
             prev.mouse = { x: x, y: y };
             prev.placeholder.w = (cx - prev.placeholder.x);
             prev.placeholder.h = (cy - prev.placeholder.y);
-
             return prev;
         })
     }
 
     resetDrawing() {
-        this.setState({ objects: [] })
+        this.setState({ objects: {} })
         localStorage.clear()
     }
 
@@ -132,7 +148,9 @@ class Editor extends React.Component {
             gridStyle.backgroundImage = `linear-gradient(to bottom, rgba(0,0,0,0.2) 0, rgba(0,0,0,0.2) 1px, transparent 1px, transparent 100%), linear-gradient(to right, rgba(0,0,0,0.2) 0, rgba(0,0,0,0.2) 1px, transparent 1px, transparent 100%)`
         }
 
-        const objects = this.state.objects.map((obj, i) => {
+        let objects = []
+        for (const key in this.state.objects) {
+            const obj = this.state.objects[key]
             const objectStyle = {
                 gridColumn: `${obj.x} / ${obj.x + obj.w}`,
                 gridRow: `${obj.y} / ${obj.y + obj.h}`
@@ -145,17 +163,17 @@ class Editor extends React.Component {
                 content = obj.properties.text
             }
             if (obj.type === 'embed') {
-                content = <iframe title={`embed-${i}`} width="560" height="315" src="https://www.youtube.com/embed/IyNrcayUNfg?controls=0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                content = <iframe title={`embed`} width="560" height="315" src="https://www.youtube.com/embed/IyNrcayUNfg?controls=0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
             }
             if (obj.type === 'rect') {
                 objectStyle.background = obj.properties.background
             }
-            return (
-                <div style={objectStyle} key={`obj-${i}`} className={`object ${obj.type}`}>
+            objects.push(
+                <div onClick={(e) => this.handleObjectClick(obj.id, e)} data-selected={obj.selected} style={objectStyle} key={obj.id} className={`object ${obj.type}`}>
                     {content}
                 </div>
             )
-        })
+        }
 
         const cursorStyle = {
             gridColumn: `${this.state.cursor.x} / ${this.state.cursor.x + 1}`,
@@ -176,7 +194,7 @@ class Editor extends React.Component {
                 <div className="editor-toolbar">
                     <Settings resetDrawing={this.resetDrawing} updateSetting={this.updateSetting} objects={this.state.objects} settings={this.state.settings}></Settings>
                 </div>
-                <div className="editor-canvas" data-outlines={this.state.settings.showOutlines} onDragStart={this.handleDragStart} onMouseMove={this.handleMouseMove} onMouseDown={this.handleMouseDown} onMouseUp={this.handleMouseUp}>
+                <div className="editor-canvas" data-tool={this.state.settings.currentTool} data-outlines={this.state.settings.showOutlines} onDragStart={this.handleDragStart} onMouseMove={this.handleMouseMove} onMouseDown={this.handleMouseDown} onMouseUp={this.handleMouseUp}>
                     <div ref={this.gridRef} style={gridStyle} className='grid'>
                         {objects}
                         {cursor}
