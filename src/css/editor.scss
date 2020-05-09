@@ -39,29 +39,38 @@
   background-repeat: no-repeat;
 
   [data-outlines=true] & {
-    outline: 1px solid rgb(0, 255, 85);
+    outline: 1px solid rgb(0, 0, 0)
+  }
+
+  [data-tool='edit'] &:hover, &[data-selected='true'] {
+    outline: 2px solid rgb(0, 76, 255);
   }
 
   &.img {
     background: black;
   }
+
   &.text {
     color: black;
   }
 }
 
-.object video, .object iframe {
+.object video,
+.object iframe {
   min-width: 100%;
   min-height: 100%;
+  pointer-events: none;
 }
 
 .cursor {
   background: black;
   pointer-events: none;
+  display: none;
 }
 
 .placeholder {
   z-index: 100;
+  pointer-events: none;
   border: 2px solid rgb(21, 255, 0);
   border-radius: 1px;
 }

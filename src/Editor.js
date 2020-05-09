@@ -1,5 +1,6 @@
 import React from "react";
 import Settings from "./Settings";
+import ObjectSettings from "./ObjectSettings";
 import "./css/editor.scss";
 
 class Editor extends React.Component {
@@ -16,6 +17,7 @@ class Editor extends React.Component {
                 currentTool: 'rect',
                 showGrid: true,
                 showOutlines: true,
+                selectedObject: "",
                 toolSettings: {
                     rect: {
                         fill: 'green'
@@ -46,6 +48,7 @@ class Editor extends React.Component {
         this.updateSetting = this.updateSetting.bind(this);
         this.resetDrawing = this.resetDrawing.bind(this);
         this.handleObjectClick = this.handleObjectClick.bind(this);
+        this.updateObject = this.updateObject.bind(this);
 
     }
     generateID() { return '' + Math.random().toString(36).substr(2, 9); };
@@ -59,6 +62,18 @@ class Editor extends React.Component {
                 console.error(`Attempted to update non-existing setting ${setting}`)
             }
             return prevState;
+        })
+    }
+    updateObject(id, setting, value) {
+        console.log(`Attempting to set ${setting} to ${value} on ${id}`)
+        this.setState((prev) => {
+            if (prev.objects[id] && prev.objects[id][setting]) {
+                console.log(`${id}: ${setting} => ${value}`)
+                prev.objects[id][setting] = value;
+            } else {
+                console.warn(`Attempted to update non-existing setting ${setting}`)
+            }
+            return prev;
         })
     }
 
@@ -78,19 +93,18 @@ class Editor extends React.Component {
     handleMouseUp(e) {
         let obj;
         const id = this.generateID()
-        
+
         if (this.state.settings.currentTool === 'img') {
-            obj = { id: id, type: 'img', properties: { src: 'https://picsum.photos/500' }, x: this.state.placeholder.x + 1, y: this.state.placeholder.y, w: this.state.placeholder.w, h: this.state.placeholder.h }
+            obj = { id: id, type: 'img', src: 'https://picsum.photos/500', x: this.state.placeholder.x + 1, y: this.state.placeholder.y, w: this.state.placeholder.w, h: this.state.placeholder.h }
         } else if (this.state.settings.currentTool === 'text') {
-            obj = { id: id, type: 'text', properties: { text: 'This paragraph of text is very very long' }, x: this.state.placeholder.x + 1, y: this.state.placeholder.y, w: this.state.placeholder.w, h: this.state.placeholder.h }
+            obj = { id: id, type: 'text', text: 'This paragraph of text is very very long', x: this.state.placeholder.x + 1, y: this.state.placeholder.y, w: this.state.placeholder.w, h: this.state.placeholder.h }
         } else if (this.state.settings.currentTool === 'embed') {
-            obj = { id: id, type: 'embed', properties: { url: '' }, x: this.state.placeholder.x + 1, y: this.state.placeholder.y, w: this.state.placeholder.w, h: this.state.placeholder.h }
+            obj = { id: id, type: 'embed', url: '', x: this.state.placeholder.x + 1, y: this.state.placeholder.y, w: this.state.placeholder.w, h: this.state.placeholder.h }
         } else if (this.state.settings.currentTool === 'rect') {
-            obj = { id: id, type: 'rect', properties: { background: 'pink' }, x: this.state.placeholder.x + 1, y: this.state.placeholder.y, w: this.state.placeholder.w, h: this.state.placeholder.h }
+            obj = { id: id, type: 'rect', background: 'pink', x: this.state.placeholder.x + 1, y: this.state.placeholder.y, w: this.state.placeholder.w, h: this.state.placeholder.h }
         }
 
         this.setState((prev) => {
-            console.log('ss')
             prev.cursor.active = false;
             prev.placeholder.active = false;
             if (obj) {
@@ -106,11 +120,8 @@ class Editor extends React.Component {
         e.preventDefault()
     }
 
-    handleObjectClick(i) {
-        console.log(i)
-        this.setState((prev) => {
-            prev.objects[i].selected = true;
-        })
+    handleObjectClick(id) {
+        this.setState({ selectedObject: id })
     }
 
     handleMouseMove(e) {
@@ -157,19 +168,19 @@ class Editor extends React.Component {
             }
             let content = null;
             if (obj.type === 'img') {
-                objectStyle.backgroundImage = `url(${obj.properties.src})`
+                objectStyle.backgroundImage = `url(${obj.src})`
             }
             if (obj.type === 'text') {
-                content = obj.properties.text
+                content = obj.text
             }
             if (obj.type === 'embed') {
-                content = <iframe title={`embed`} width="560" height="315" src="https://www.youtube.com/embed/IyNrcayUNfg?controls=0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                content = <iframe title={`embed`} width="560" height="315" src={obj.url} frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
             }
             if (obj.type === 'rect') {
-                objectStyle.background = obj.properties.background
+                objectStyle.background = obj.background
             }
             objects.push(
-                <div onClick={(e) => this.handleObjectClick(obj.id, e)} data-selected={obj.selected} style={objectStyle} key={obj.id} className={`object ${obj.type}`}>
+                <div onClick={(e) => this.handleObjectClick(obj.id, e)} data-selected={obj.id === this.state.selectedObject} style={objectStyle} key={obj.id} className={`object ${obj.type}`}>
                     {content}
                 </div>
             )
@@ -193,6 +204,7 @@ class Editor extends React.Component {
             <div className='editor'>
                 <div className="editor-toolbar">
                     <Settings resetDrawing={this.resetDrawing} updateSetting={this.updateSetting} objects={this.state.objects} settings={this.state.settings}></Settings>
+                    <ObjectSettings updateObject={this.updateObject} object={this.state.objects[this.state.selectedObject] || null}></ObjectSettings>
                 </div>
                 <div className="editor-canvas" data-tool={this.state.settings.currentTool} data-outlines={this.state.settings.showOutlines} onDragStart={this.handleDragStart} onMouseMove={this.handleMouseMove} onMouseDown={this.handleMouseDown} onMouseUp={this.handleMouseUp}>
                     <div ref={this.gridRef} style={gridStyle} className='grid'>
