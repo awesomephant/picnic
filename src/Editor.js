@@ -49,6 +49,7 @@ class Editor extends React.Component {
         this.resetDrawing = this.resetDrawing.bind(this);
         this.handleObjectClick = this.handleObjectClick.bind(this);
         this.updateObject = this.updateObject.bind(this);
+        this.deleteObject = this.deleteObject.bind(this);
 
     }
     generateID() { return '' + Math.random().toString(36).substr(2, 9); };
@@ -78,6 +79,14 @@ class Editor extends React.Component {
         })
     }
 
+    deleteObject(id) {
+        console.log(`Attempting to delete ${id}`)
+        this.setState((prev) => {
+            delete prev.objects[id]
+            return prev;
+        })
+    }
+
     handleMouseDown(e) {
         this.setState({
             cursor: { active: true },
@@ -98,7 +107,7 @@ class Editor extends React.Component {
         if (this.state.settings.currentTool === 'img') {
             obj = { id: id, type: 'img', src: 'https://picsum.photos/500', x: this.state.placeholder.x + 1, y: this.state.placeholder.y, w: this.state.placeholder.w, h: this.state.placeholder.h }
         } else if (this.state.settings.currentTool === 'text') {
-            obj = { id: id, type: 'text', text: 'This paragraph of text is very very long', x: this.state.placeholder.x + 1, y: this.state.placeholder.y, w: this.state.placeholder.w, h: this.state.placeholder.h }
+            obj = { id: id, type: 'text', fontSize: 18, fontWeight: 200, fontFamily: 'Helvetica', lineHeight: 1.1, letterSpacing: 0, text: 'This paragraph of text is very very long', x: this.state.placeholder.x + 1, y: this.state.placeholder.y, w: this.state.placeholder.w, h: this.state.placeholder.h }
         } else if (this.state.settings.currentTool === 'embed') {
             obj = { id: id, type: 'embed', url: ' ', x: this.state.placeholder.x + 1, y: this.state.placeholder.y, w: this.state.placeholder.w, h: this.state.placeholder.h }
         } else if (this.state.settings.currentTool === 'rect') {
@@ -172,6 +181,11 @@ class Editor extends React.Component {
                 objectStyle.backgroundImage = `url(${obj.src})`
             }
             if (obj.type === 'text') {
+                objectStyle.fontSize = `${obj.fontSize}px`
+                objectStyle.fontWeight = obj.fontWeight
+                objectStyle.fontFamily = obj.fontFamily
+                objectStyle.lineHeight = obj.lineHeight
+                objectStyle.letterSpacing = `${obj.letterSpacing}em`
                 content = obj.text
             }
             if (obj.type === 'embed') {
@@ -205,7 +219,7 @@ class Editor extends React.Component {
             <div className='editor'>
                 <div className="editor-toolbar">
                     <Settings resetDrawing={this.resetDrawing} updateSetting={this.updateSetting} objects={this.state.objects} settings={this.state.settings}></Settings>
-                    <ObjectSettings updateObject={this.updateObject} object={this.state.objects[this.state.selectedObject] || null}></ObjectSettings>
+                    <ObjectSettings deleteObject={this.deleteObject} updateObject={this.updateObject} object={this.state.objects[this.state.selectedObject] || null}></ObjectSettings>
                 </div>
                 <div className="editor-canvas" data-tool={this.state.settings.currentTool} data-outlines={this.state.settings.showOutlines} onDragStart={this.handleDragStart} onMouseMove={this.handleMouseMove} onMouseDown={this.handleMouseDown} onMouseUp={this.handleMouseUp}>
                     <div ref={this.gridRef} style={gridStyle} className='grid'>
