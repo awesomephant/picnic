@@ -13,12 +13,12 @@ export default function ObjectSettings(props) {
     if (props.object !== null) {
         for (const key in props.object) {
             let p = props.object[key]
-            if (key === 'background'|| key==='color') {
+            if (key === 'background' || key === 'color') {
                 settings.push(
                     <div className='setting'>
                         <label htmlFor={key}>{key}</label>
                         <input onChange={(e) => handleUpdate(key, e.target.value)} value={p} type='color'></input>
-                </div>
+                    </div>
                 )
             } else if (key === 'text') {
                 settings.push(
@@ -45,13 +45,16 @@ export default function ObjectSettings(props) {
         }
     }
 
+    let content = "No object selected"
+    if (settings.length > 0) {
+        content = <>
+            {settings}
+            <button onClick={handleDelete} className='button danger'>Delete Object</button>
+        </>
+    }
     return (
         <div className='object-settings settings'>
-            <h2>Object Settings</h2>
-            {settings}
-            {settings.length > 0 &&
-                <button onClick={handleDelete} className='button danger'>Delete Object</button>
-            }
+            {content}
         </div>
     )
 }

@@ -1,5 +1,6 @@
 import React from "react";
 import Settings from "./Settings";
+import Window from "./Window";
 import ObjectSettings from "./ObjectSettings";
 import "./css/editor.scss";
 
@@ -138,13 +139,15 @@ class Editor extends React.Component {
         let r = this.gridRef.current.getBoundingClientRect()
         const x = e.clientX;
         const y = e.clientY;
+        const dx = e.movementX;
+        const dy = e.movementY;
         const cell = (this.w / this.gridSize);
         const cx = Math.ceil((x - r.left) / cell)
         const cy = Math.ceil((y - r.top) / cell)
-
+        console.log(dx)
         this.setState((prev) => {
             prev.cursor = { x: cx, y: cy };
-            prev.mouse = { x: x, y: y };
+            prev.mouse = { x: x, y: y, deltaX: dx, deltaY: dy };
             prev.placeholder.w = (cx - prev.placeholder.x);
             prev.placeholder.h = (cy - prev.placeholder.y);
             return prev;
@@ -217,12 +220,16 @@ class Editor extends React.Component {
             placeholder = <div className='placeholder' style={placeholderStyle}></div>
         }
         return (
-            <div className='editor'>
+            <div className='editor' onMouseMove={this.handleMouseMove}>
                 <div className="editor-toolbar">
-                    <Settings resetDrawing={this.resetDrawing} updateSetting={this.updateSetting} objects={this.state.objects} settings={this.state.settings}></Settings>
-                    <ObjectSettings deleteObject={this.deleteObject} updateObject={this.updateObject} object={this.state.objects[this.state.selectedObject] || null}></ObjectSettings>
+                    <Window x={20} y={60} mouse={this.state.mouse} title='Tools'>
+                        <Settings resetDrawing={this.resetDrawing} updateSetting={this.updateSetting} objects={this.state.objects} settings={this.state.settings}></Settings>
+                    </Window>
+                    <Window x={200} y={1000} mouse={this.state.mouse} title='Object Settings'>
+                        <ObjectSettings deleteObject={this.deleteObject} updateObject={this.updateObject} object={this.state.objects[this.state.selectedObject] || null}></ObjectSettings>
+                    </Window>
                 </div>
-                <div className="editor-canvas" data-tool={this.state.settings.currentTool} data-outlines={this.state.settings.showOutlines} onDragStart={this.handleDragStart} onMouseMove={this.handleMouseMove} onMouseDown={this.handleMouseDown} onMouseUp={this.handleMouseUp}>
+                <div className="editor-canvas" data-tool={this.state.settings.currentTool} data-outlines={this.state.settings.showOutlines} onDragStart={this.handleDragStart} onMouseDown={this.handleMouseDown} onMouseUp={this.handleMouseUp}>
                     <div ref={this.gridRef} style={gridStyle} className='grid'>
                         {objects}
                         {cursor}

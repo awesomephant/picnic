@@ -1,5 +1,5 @@
 .editor {
-  display: flex;
+  display: block;
   background-color: rgb(255, 255, 255);
   height: 100vh;
   font-family: chicago;
@@ -16,6 +16,7 @@
 }
 
 .grid {
+  margin: 0 auto;
   display: grid;
   background-color: white;
   border: 1px solid black;
