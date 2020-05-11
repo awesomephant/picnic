@@ -47,7 +47,7 @@ body {
 .site-nav, .artist-meta {
   a {
     color: rgba(13, 11, 22, .9);
-    position: absolute;
+    position: fixed;
     letter-spacing: .01em;
     font-variation-settings: 'wght' 500, 'wdth' 105;
     text-transform: uppercase;
