@@ -1,3 +1,9 @@
+:root {
+  --yellow: rgb(251, 251, 31);
+  --purple: #C297FF;
+}
+
+
 @font-face {
   font-family: "chicago";
   src: url("../fonts/ChiKareGo.ttf") format("truetype");
@@ -7,6 +13,12 @@
   font-family: "acumin-variable";
   src: url("../fonts/AcuminVariableConcept.otf")
 }
+
+@keyframes blink {
+  from {color: black}
+  to {color: var(--yellow)}
+}
+
 
 * {
   margin: 0;
@@ -28,7 +40,7 @@ body {
   top: 0;
   left: 0;
   z-index: -100;
-  background: #C297FF;
+  background: var(--purple);
 }
 
 .site-title {
@@ -55,6 +67,9 @@ body {
     font-size: 3rem;
     border-radius: 100%;
     border: 2px solid transparent;
+    &.highlight {
+      animation: blink 2s alternate infinite both;
+    }
     &:hover, &:focus {
       border: 2px solid black;
     }

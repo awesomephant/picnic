@@ -10,7 +10,7 @@ export default function Home() {
     return (
         <main>
             <nav className='site-nav'>
-                <Link to="/artist/">R1</Link>
+                <Link className='highlight' to="/artist/">R1</Link>
                 <Link to="/editor/">Ready Meals</Link>
                 <a href="#1"><CurrentDate></CurrentDate></a>
                 <a href="#1">Collective</a>

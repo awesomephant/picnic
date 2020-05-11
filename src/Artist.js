@@ -1,7 +1,10 @@
 import React from 'react';
+import CurrentDate from './CurrentDate.js'
+import {
+    Link
+} from "react-router-dom";
 
 const data = '[{"type":"img","properties":{"src":"https://picsum.photos/500"},"x":7,"y":7,"w":15,"h":14},{"type":"img","properties":{"src":"https://picsum.photos/500"},"x":7,"y":7,"w":15,"h":14},{"type":"img","properties":{"src":"https://picsum.photos/500"},"x":7,"y":7,"w":15,"h":14},{"type":"img","properties":{"src":"https://picsum.photos/500"},"x":26,"y":10,"w":14,"h":10},{"type":"img","properties":{"src":"https://picsum.photos/500"},"x":26,"y":10,"w":14,"h":10},{"type":"img","properties":{"src":"https://picsum.photos/500"},"x":26,"y":10,"w":14,"h":10},{"type":"img","properties":{"src":"https://picsum.photos/500"},"x":15,"y":26,"w":12,"h":7},{"type":"img","properties":{"src":"https://picsum.photos/500"},"x":15,"y":26,"w":12,"h":7},{"type":"img","properties":{"src":"https://picsum.photos/500"},"x":15,"y":26,"w":12,"h":7}]'
-
 
 function renderObjects(arr) {
     const objects = arr.map((obj, i) => {
@@ -36,9 +39,9 @@ export default function Artist(props) {
     return (
         <main className='artist'>
             <nav className="artist-meta">
-                <a href='#1'>Support*</a>
+                <Link to='/'>Picnic</Link>
                 <a href='#1'>Info</a>
-                <a href='#1'>May 11</a>
+                <a href='#1'><CurrentDate></CurrentDate></a>
                 <a href='#1'>Max Kohler</a>
             </nav>
             <div className='artist-grid'>

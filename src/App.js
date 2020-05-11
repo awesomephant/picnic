@@ -18,7 +18,6 @@ function App() {
       <Switch>
         
         <Route path='/artist'>
-          <Link to='/'>Home</Link>
           <Artist></Artist>
         </Route>
         
