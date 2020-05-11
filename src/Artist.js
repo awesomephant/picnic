@@ -40,7 +40,7 @@ export default function Artist(props) {
         <main className='artist'>
             <nav className="artist-meta">
                 <Link to='/'>Picnic</Link>
-                <a href='#1'>Info</a>
+                <Link to='#1' className='highlight'>Support</Link>
                 <a href='#1'><CurrentDate></CurrentDate></a>
                 <a href='#1'>Max Kohler</a>
             </nav>
