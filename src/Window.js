@@ -3,32 +3,29 @@ import "./css/Window.scss"
 
 export default function Window(props) {
     const [dragging, setDragging] = useState(false);
-    const [mouseX, setMouseX] = useState(0);
-    const [mouseY, setMouseY] = useState(0);
     const [position, setPosition] = useState({ x: props.x || 0, y: props.y || 0 });
     const [offset, setOffset] = useState({ x: 0, y: 0 });
     const windowEl = useRef(null)
-
+    const draggable = props.draggable;
     function handleDragStart(e) {
-        setDragging(true)
-        const box = windowEl.current.getBoundingClientRect()
-        setOffset({ x: mouseX - box.x, y: mouseY - box.y })
+        if (draggable) {
+            setDragging(true)
+            const box = windowEl.current.getBoundingClientRect()
+            setOffset({ x: props.mouse.x - box.x, y: props.mouse.y - box.y })
+        }
     }
 
     function handleDragEnd() {
-        setDragging(false)
-        setPosition({ x: mouseX, y: mouseY })
+        if (draggable) {
+            setDragging(false)
+            setPosition({ x: props.mouse.x, y: props.mouse.y })
+        }
     }
-
-    window.addEventListener('mousemove', (e) => {
-        setMouseX(e.clientX)
-        setMouseY(e.clientY)
-    })
 
     let windowStyle;
     if (dragging) {
         windowStyle = {
-            transform: `translateX(${mouseX - offset.x}px) translateY(${mouseY - offset.y}px)`
+            transform: `translateX(${props.mouse.x - offset.x}px) translateY(${props.mouse.y - offset.y}px)`
         }
     } else {
         windowStyle = {
@@ -37,7 +34,7 @@ export default function Window(props) {
     }
 
     return (
-        <div ref={windowEl} data-dragging={dragging} className='window' style={windowStyle}>
+        <div ref={windowEl} data-draggable={draggable} data-dragging={dragging} className='window' style={windowStyle}>
             <header onMouseDown={handleDragStart} onMouseUp={handleDragEnd} className='window-header'>
                 <h3 className="window-title">{props.title}</h3>
             </header>

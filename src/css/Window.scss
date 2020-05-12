@@ -2,22 +2,37 @@
     border: 1px solid black;
     position: fixed;
     border-radius: 2px;
-    top:  0px;
+    top: 0px;
     left: 0px;
     background: white;
     z-index: 1000;
     box-shadow: 2px 2px 0 black;
     width: 14rem;
     font-size: 16px;
+}
 
+.calendar {
+    width: 100%;
+    tr {
+        border-bottom: 1px solid black;
+        &:last-of-type {
+            border-bottom: 0;
+        }
+    }
+    td {
+        padding: .2em 0;
+    }
 }
 
 .window-header {
     background: rgb(238, 238, 238);
     padding: .2rem;
     border-bottom: 1px solid black;
-    cursor: grab;
-    [data-dragging=true] &{
+    [data-draggable=true] &{
+        cursor: grab;
+    }
+
+    [data-dragging=true] & {
         cursor: grabbing;
     }
 }

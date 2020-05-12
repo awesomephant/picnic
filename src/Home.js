@@ -3,6 +3,7 @@ import Cloth from './Cloth';
 import Window from './Window.js';
 import logo from './logo.svg';
 import CurrentDate from './CurrentDate.js';
+import Calendar from './Calendar.js';
 import {
     Link
 } from "react-router-dom";
@@ -22,8 +23,8 @@ export default function Home(props) {
         <img src={logo} alt='logo'></img>
             </h1>
             <Cloth></Cloth>
-            <Window title='Calendar' mouse={props.mouse} className='window'>
-                this is a calendar
+            <Window title='Calendar' x={200} y={400} className='window' draggable={false}>
+                <Calendar></Calendar>
         </Window>
         </main>
     )
