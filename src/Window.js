@@ -3,6 +3,8 @@ import "./css/Window.scss"
 
 export default function Window(props) {
     const [dragging, setDragging] = useState(false);
+    const [mouseX, setMouseX] = useState(0);
+    const [mouseY, setMouseY] = useState(0);
     const [position, setPosition] = useState({ x: props.x || 0, y: props.y || 0 });
     const [offset, setOffset] = useState({ x: 0, y: 0 });
     const windowEl = useRef(null)
@@ -10,18 +12,23 @@ export default function Window(props) {
     function handleDragStart(e) {
         setDragging(true)
         const box = windowEl.current.getBoundingClientRect()
-        setOffset({ x: props.mouse.x - box.x, y: props.mouse.y - box.y })
+        setOffset({ x: mouseX - box.x, y: mouseY - box.y })
     }
 
     function handleDragEnd() {
         setDragging(false)
-        setPosition({ x: props.mouse.x, y: props.mouse.y })
+        setPosition({ x: mouseX, y: mouseY })
     }
+
+    window.addEventListener('mousemove', (e) => {
+        setMouseX(e.clientX)
+        setMouseY(e.clientY)
+    })
 
     let windowStyle;
     if (dragging) {
         windowStyle = {
-            transform: `translateX(${props.mouse.x - offset.x}px) translateY(${props.mouse.y - offset.y}px)`
+            transform: `translateX(${mouseX - offset.x}px) translateY(${mouseY - offset.y}px)`
         }
     } else {
         windowStyle = {

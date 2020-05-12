@@ -8,5 +8,5 @@ export default function () {
         setDate(dayjs().format(dateFormat))
     }, 1000);
 
-    return (<date>{date}</date>)
+    return (<span>{date}</span>)
 }

@@ -1,12 +1,14 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Cloth from './Cloth';
+import Window from './Window.js';
 import logo from './logo.svg';
 import CurrentDate from './CurrentDate.js';
 import {
     Link
 } from "react-router-dom";
 
-export default function Home() {
+export default function Home(props) {
+    const [calendarActive, setCalendarActive] = useState(false);
     return (
         <main>
             <nav className='site-nav'>
@@ -20,6 +22,9 @@ export default function Home() {
         <img src={logo} alt='logo'></img>
             </h1>
             <Cloth></Cloth>
+            <Window title='Calendar' mouse={props.mouse} className='window'>
+                this is a calendar
+        </Window>
         </main>
     )
 }
