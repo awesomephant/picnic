@@ -19,6 +19,12 @@
     color: white;
     font-size: 3rem;
     white-space: nowrap;
+    transform-origin: bottom;
+    transform: scaleY(0);
+    transition: 200ms;
+    &[data-active="true"] {
+        transform: scaleY(1);
+    }
     span {
         display: inline-flex;
         animation: chyron 30s linear infinite both;

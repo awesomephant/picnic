@@ -11,6 +11,8 @@ import {
 
 export default function Home(props) {
     const [calendarActive, setCalendarActive] = useState(false);
+    const [chyronActive, setChyronActive] = useState(false);
+    
     function toggleCalendar(){
         if (calendarActive === true){
             setCalendarActive(false)
@@ -18,13 +20,22 @@ export default function Home(props) {
             setCalendarActive(true)
         }
     }
+
+    function toggleChyron(){
+        if (chyronActive === true){
+            setChyronActive(false)
+        } else {
+            setChyronActive(true)
+        }
+    }
+
     return (
         <main>
-            <nav className='site-nav'>
-                <Link className='highlight' to="/artist/">R1</Link>
-                <Link to="/editor/">Ready Meals</Link>
-                <a href="#1" onClick={toggleCalendar}><CurrentDate></CurrentDate></a>
-                <a href="#1">Collective</a>
+            <nav className='site-nav' data-chyron={chyronActive}>
+                <Link className='artist highlight' to="/artist/">R1</Link>
+                <Link className='readymeals' to="/editor/">Ready Meals</Link>
+                <a className='date' href="#1" onClick={toggleCalendar}><CurrentDate></CurrentDate></a>
+                <a className='collective' href="#1" onClick={toggleChyron}>Collective</a>
             </nav>
             <h1 className='site-title'>
                 PICNIC
@@ -36,7 +47,7 @@ export default function Home(props) {
                     <Calendar></Calendar>
                 </Window>
             }
-            <Chyron text='PICNIC IS AN INDEPENDENT RESIDENCY PROGRAMME SUPPORTING CREATIVES OF ALL NATURE. EACH RESIDENT GETS 24 HRS TO INTERACT WITH THE SPACE THROUGH EXPERIMENTATION AND SELF-DISCOVERY. WE TRUST THESE INVESTIGATIONS AS CATALYSTS FOR A COMMUNAL, EVER CHANGING, UNITED NETWORK THAT EMBRACES CREATIVE AWAKENING WORLDWID' active='true'></Chyron>
+            <Chyron active={chyronActive} text='PICNIC IS AN INDEPENDENT RESIDENCY PROGRAMME SUPPORTING CREATIVES OF ALL NATURE. EACH RESIDENT GETS 24 HRS TO INTERACT WITH THE SPACE THROUGH EXPERIMENTATION AND SELF-DISCOVERY. WE TRUST THESE INVESTIGATIONS AS CATALYSTS FOR A COMMUNAL, EVER CHANGING, UNITED NETWORK THAT EMBRACES CREATIVE AWAKENING WORLDWID'></Chyron>
         </main>
     )
 }

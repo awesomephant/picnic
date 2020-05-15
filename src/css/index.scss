@@ -33,9 +33,10 @@
   font-weight: normal;
   box-sizing: border-box;
 }
+
 table {
-	border-collapse: collapse;
-	border-spacing: 0;
+  border-collapse: collapse;
+  border-spacing: 0;
 }
 
 body {
@@ -78,6 +79,7 @@ body {
     text-decoration: none;
     font-size: 3rem;
     border-radius: 100%;
+    transition: 300ms;
     border: 2px solid transparent;
 
     &.highlight {
@@ -89,25 +91,32 @@ body {
       border: 2px solid black;
     }
 
-    &:nth-of-type(1) {
+    &.artist {
       left: 2rem;
       top: 2rem;
     }
 
-    &:nth-of-type(2) {
+    &.readymeals {
       right: 2rem;
       top: 2rem;
     }
 
-    &:nth-of-type(3) {
+    &.date {
       left: 2rem;
-      bottom: 5rem;
+      bottom: 2rem;
     }
 
-    &:nth-of-type(4) {
+    &.collective {
       right: 2rem;
-      bottom: 5rem;
+      bottom: 2rem;
     }
+  }
+}
+
+[data-chyron="true"] {
+  a.collective,
+  a.date {
+    bottom: 5rem;
   }
 }
 
