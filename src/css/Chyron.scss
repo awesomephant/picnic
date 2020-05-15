@@ -1,0 +1,26 @@
+@keyframes chyron {
+    from {
+        transform: translateX(100vw);
+    }
+
+    to {
+        transform: translateX(-100%);
+    }
+}
+
+.chyron {
+    background: var(--black);
+    position: absolute;
+    bottom: 0em;
+    font-variation-settings: 'wght'450, 'wdth'105;
+    width: 100vw;
+    letter-spacing: .02em;
+    overflow: hidden;
+    color: white;
+    font-size: 3rem;
+    white-space: nowrap;
+    span {
+        display: inline-flex;
+        animation: chyron 30s linear infinite both;
+    }
+}
