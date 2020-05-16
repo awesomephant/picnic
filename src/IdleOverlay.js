@@ -22,7 +22,7 @@ export default function IdleOverlay(props) {
     }, [props.active])
 
     const imageEls = images.map((img, i) => {
-        return (<img style={{ left: `${img.x}%`, top: `${img.y}%`, transform: `rotate(${img.r}deg)` }} key={`overlay-${i}`} src={banana}></img>)
+        return (<img alt='' style={{ left: `${img.x}%`, top: `${img.y}%`, transform: `rotate(${img.r}deg)` }} key={`overlay-${i}`} src={banana}></img>)
     })
 
 

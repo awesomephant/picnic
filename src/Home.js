@@ -13,7 +13,7 @@ import {
 export default function Home(props) {
     const [calendarActive, setCalendarActive] = useState(false);
     const [bottomChyronActive, setBottomChyronActive] = useState(false);
-    const [topChyronActive, setTopChyronActive] = useState(false);
+    const [topChyronActive, setTopChyronActive] = useState(true);
     const [idleTime, setIdleTime] = useState(0);
 
     function incrementIdleTime() {
