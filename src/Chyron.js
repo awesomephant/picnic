@@ -3,8 +3,14 @@ import "./css/Chyron.scss"
 
 export default function Chyron(props) {
     return (
-        <section className='chyron' data-active={props.active}>
-            <span>{props.text}</span>
+        <section className={`chyron chyron-${props.position} animate-${props.animate}`} data-active={props.active} data-direction={props.direction}>
+            <span>{props.children}</span>
         </section>
     )
+}
+
+Chyron.defaultProps = {
+    animate: true,
+    position: "bottom",
+    direction: 'ltr'
 }

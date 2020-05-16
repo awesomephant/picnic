@@ -8,10 +8,18 @@
     }
 }
 
+.chyron-top {
+    top: 0em;
+    transform-origin:top
+}
+.chyron-bottom {
+    bottom: 0em;
+    transform-origin: bottom;
+}
+
 .chyron {
     background: var(--black);
     position: absolute;
-    bottom: 0em;
     font-variation-settings: 'wght'450, 'wdth'105;
     width: 100vw;
     letter-spacing: .02em;
@@ -19,14 +27,27 @@
     color: white;
     font-size: 3rem;
     white-space: nowrap;
-    transform-origin: bottom;
     transform: scaleY(0);
     transition: 200ms;
+    text-transform: uppercase;
+    a {
+        color: white;
+        margin-right: 1em;
+        text-decoration: none;
+        border: 2px solid transparent;
+        &:hover, &:focus {
+            border: 2px solid white;
+            border-radius: 100%;
+        }
+    }
     &[data-active="true"] {
         transform: scaleY(1);
     }
     span {
         display: inline-flex;
         animation: chyron 30s linear infinite both;
+    }
+    &[data-direction='ltr'] span{
+        animation: chyron 30s linear infinite both reverse;
     }
 }

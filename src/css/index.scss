@@ -79,7 +79,7 @@ body {
     text-decoration: none;
     font-size: 3rem;
     border-radius: 100%;
-    transition: 300ms;
+    transition: bottom 300ms, top 300ms;
     border: 2px solid transparent;
 
     &.highlight {
@@ -113,10 +113,16 @@ body {
   }
 }
 
-[data-chyron="true"] {
+[data-bottomChyron="true"] {
   a.collective,
   a.date {
     bottom: 5rem;
+  }
+}
+[data-topChyron="true"] {
+  a.artist,
+  a.readymeals {
+    top: 5rem;
   }
 }
 
