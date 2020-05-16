@@ -10,8 +10,9 @@
 
 .chyron-top {
     top: 0em;
-    transform-origin:top
+    transform-origin: top;
 }
+
 .chyron-bottom {
     bottom: 0em;
     transform-origin: bottom;
@@ -30,24 +31,36 @@
     transform: scaleY(0);
     transition: 200ms;
     text-transform: uppercase;
+
+    i {
+        display: inline-block;
+        transform: scale(1.4) translateY(-.14em);
+        margin-right: 1em;
+    }
+
     a {
         color: white;
         margin-right: 1em;
         text-decoration: none;
         border: 2px solid transparent;
-        &:hover, &:focus {
+
+        &:hover,
+        &:focus {
             border: 2px solid white;
             border-radius: 100%;
         }
     }
+
     &[data-active="true"] {
         transform: scaleY(1);
     }
+
     span {
         display: inline-flex;
         animation: chyron 30s linear infinite both;
     }
-    &[data-direction='ltr'] span{
+
+    &[data-direction='ltr'] span {
         animation: chyron 30s linear infinite both reverse;
     }
 }

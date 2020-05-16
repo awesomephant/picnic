@@ -13,7 +13,7 @@ import {
 export default function Home(props) {
     const [calendarActive, setCalendarActive] = useState(false);
     const [bottomChyronActive, setBottomChyronActive] = useState(false);
-    const [topChyronActive, setTopChyronActive] = useState(true);
+    const [topChyronActive, setTopChyronActive] = useState(false);
     const [idleTime, setIdleTime] = useState(0);
 
     function incrementIdleTime() {
@@ -69,14 +69,21 @@ export default function Home(props) {
                 </Window>
             }
             <Chyron position='top' direction='ltr' active={topChyronActive}>
-                <a href='#1'>Support</a>
-                <a href='#1'>Shop</a>
-                <a href='#1'>Support</a>
-                <a href='#1'>Shop</a>
-                <a href='#1'>Support</a>
-                <a href='#1'>Shop</a>
-                <a href='#1'>Support</a>
-                <a href='#1'>Shop</a>
+                <div className="chyron-item">
+                    <i>☻</i>
+                    <a href='#1'>Support</a>
+                    <i>☻</i>
+                    <a href='#1'>Shop</a>
+                    <i>☻</i>
+                    <a href='#1'>Support</a>
+                    <i>☻</i>
+                    <a href='#1'>Shop</a>
+                    <i>☻</i>
+                    <a href='#1'>Support</a>
+                    <i>☻</i>
+                    <a href='#1'>Shop</a>
+                    <i>☻</i>
+                </div>
             </Chyron>
             <Chyron position='bottom' direction='rtl' active={bottomChyronActive}>
                 Picnic is an independent residency programme supporting creatives of all nature. Each resident gets 24 hours to interact with the space through experimentation and self-discovery. We trust these investigations as catalysts for a communal, ever-changing, united network that embraces creative awakening worldwide.
