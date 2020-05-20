@@ -4,6 +4,7 @@ import Window from './Window.js';
 import logo from './logo.svg';
 import CurrentDate from './CurrentDate.js';
 import Calendar from './Calendar.js';
+import ContactForm from './ContactForm.js';
 import Chyron from './Chyron.js';
 import IdleOverlay from './IdleOverlay.js';
 import {
@@ -12,8 +13,9 @@ import {
 
 export default function Home(props) {
     const [calendarActive, setCalendarActive] = useState(false);
+    const [contactActive, setContactActive] = useState(true);
     const [bottomChyronActive, setBottomChyronActive] = useState(false);
-    const [topChyronActive, setTopChyronActive] = useState(false);
+    const [topChyronActive, setTopChyronActive] = useState(true);
     const [idleTime, setIdleTime] = useState(0);
 
     function incrementIdleTime() {
@@ -30,6 +32,14 @@ export default function Home(props) {
             setCalendarActive(false)
         } else {
             setCalendarActive(true)
+        }
+    }
+    function toggleContact() {
+        setIdleTime(0)
+        if (contactActive === true) {
+            setContactActive(false)
+        } else {
+            setContactActive(true)
         }
     }
 
@@ -68,6 +78,11 @@ export default function Home(props) {
                     <Calendar></Calendar>
                 </Window>
             }
+            {contactActive === true &&
+                <Window title='Submit' x={600} y={300} className='window' draggable={false}>
+                    <ContactForm></ContactForm>
+                </Window>
+            }
             <Chyron position='top' direction='ltr' active={topChyronActive}>
                 <div className="chyron-item">
                     <i>☻</i>
@@ -75,14 +90,7 @@ export default function Home(props) {
                     <i>☻</i>
                     <a href='#1'>Shop</a>
                     <i>☻</i>
-                    <a href='#1'>Support</a>
-                    <i>☻</i>
-                    <a href='#1'>Shop</a>
-                    <i>☻</i>
-                    <a href='#1'>Support</a>
-                    <i>☻</i>
-                    <a href='#1'>Shop</a>
-                    <i>☻</i>
+                    <a href='#1'>Submit</a>
                 </div>
             </Chyron>
             <Chyron position='bottom' direction='rtl' active={bottomChyronActive}>
