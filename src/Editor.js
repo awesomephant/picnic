@@ -225,7 +225,7 @@ class Editor extends React.Component {
                     <Window draggable={true} x={20} y={60} mouse={this.state.mouse} title='Tools'>
                         <Settings resetDrawing={this.resetDrawing} updateSetting={this.updateSetting} objects={this.state.objects} settings={this.state.settings}></Settings>
                     </Window>
-                    <Window draggable={true} x={200} y={1000} mouse={this.state.mouse} title='Object Settings'>
+                    <Window draggable={true} x={200} y={200} mouse={this.state.mouse} title='Object Settings'>
                         <ObjectSettings deleteObject={this.deleteObject} updateObject={this.updateObject} object={this.state.objects[this.state.selectedObject] || null}></ObjectSettings>
                     </Window>
                 </div>
