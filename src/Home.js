@@ -71,15 +71,15 @@ export default function Home(props) {
             <Chyron position='top' direction='ltr' active={topChyronActive}>
                 <div className="chyron-item">
                     <i>☻</i>
-                    <a href='#1'>Support</a>
+                    <a href='https://www.paypal.me/picniccollective'>Support</a>
                     <i>☻</i>
-                    <a href='#1'>Shop</a>
+                    <a href='https://everpress.com/picniccollective'>Shop</a>
                     <i>☻</i>
                     <a href='mailto:itspicniccollective@gmail.com?subject=Submission&body=Name%3A%0D%0AWebsite%3A%0D%0A'>Submit</a>
                     <i>☻</i>
-                    <a href='#1'>Support</a>
+                    <a href='https://www.paypal.me/picniccollective'>Support</a>
                     <i>☻</i>
-                    <a href='#1'>Shop</a>
+                    <a href='https://everpress.com/picniccollective'>Shop</a>
                     <i>☻</i>
                     <a href='mailto:itspicniccollective@gmail.com?subject=Submission&body=Name%3A%0D%0AWebsite%3A%0D%0A'>Submit</a>
                     <i>☻</i>
