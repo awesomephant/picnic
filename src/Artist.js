@@ -38,10 +38,10 @@ export default function Artist(props) {
     return (
         <main className='artist'>
             <nav className="artist-meta">
-                <Link to='/'>Picnic</Link>
-                <Link to='#1' className='highlight'>Support</Link>
-                <a href='#1'><CurrentDate></CurrentDate></a>
-                <a href='#1'>{data[0].artist_name}</a>
+                <Link className='artist' to='/'>Picnic</Link>
+                <Link className='readymeals highlight' to='#1'>Support</Link>
+                <a className='date' href='#1'><CurrentDate></CurrentDate></a>
+                <a className='collective' href='#1'>{data[0].artist_name}</a>
             </nav>
             <div className='artist-grid'>
                 {items}

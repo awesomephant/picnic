@@ -114,12 +114,15 @@ body {
 }
 
 [data-bottomchyron="true"] {
+
   a.collective,
   a.date {
     bottom: 5rem;
   }
 }
+
 [data-topchyron="true"] {
+
   a.artist,
   a.readymeals {
     top: 5rem;
