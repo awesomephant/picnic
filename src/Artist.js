@@ -1,4 +1,6 @@
-import React from 'react';
+import React, { useState } from 'react';
+import Calendar from './Calendar.js';
+import Window from './Window.js'
 import CurrentDate from './CurrentDate.js'
 import {
     Link
@@ -35,17 +37,32 @@ export default function Artist(props) {
     const objects = JSON.parse(data[0].code);
     const items = renderObjects(objects)
 
+    const [calendarActive, setCalendarActive] = useState(false);
+
+    function toggleCalendar() {
+        if (calendarActive === true) {
+            setCalendarActive(false)
+        } else {
+            setCalendarActive(true)
+        }
+    }
+
     return (
         <main className='artist'>
             <nav className="artist-meta">
                 <Link className='artist' to='/'>Picnic</Link>
-                <Link className='readymeals highlight' to='#1'>Support</Link>
-                <a className='date' href='#1'><CurrentDate></CurrentDate></a>
+                <Link className='readymeals highlight' to='https://www.paypal.me/picniccollective'>Support</Link>
+                <a className='date' href='#1' onClick={toggleCalendar}><CurrentDate></CurrentDate></a>
                 <a className='collective' href='#1'>{data[0].artist_name}</a>
             </nav>
             <div className='artist-grid'>
                 {items}
             </div>
+            {calendarActive === true &&
+                <Window title='Calendar' x={200} y={400} className='window' draggable={false}>
+                    <Calendar></Calendar>
+                </Window>
+            }
         </main>
     )
 }
