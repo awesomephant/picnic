@@ -29,7 +29,8 @@ export default function Window(props) {
         }
     } else {
         windowStyle = {
-            transform: `translateX(${position.x - offset.x}px) translateY(${position.y - offset.y}px)`
+            transform: `translateX(${position.x - offset.x}px) translateY(${position.y - offset.y}px)`,
+            width: props.width
         }
     }
 
