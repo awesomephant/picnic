@@ -27,12 +27,12 @@ function renderObjects(tree) {
             content = obj.text;
             objectStyle.color = obj.color;
             objectStyle.fontFamily = obj.fontFamily + ', sans-serif';
-            if (obj.fontFamily.includes('oblique')){
+            if (obj.fontFamily.includes('oblique')) {
                 objectStyle.fontStyle = 'italic';
             }
             objectStyle.fontSize = obj.fontSize;
             objectStyle.letterSpacing = obj.letterSpacing;
-            objectStyle.lineHeight= obj.lineHeight;
+            objectStyle.lineHeight = obj.lineHeight;
             objectStyle.fontWeight = obj.fontWeight;
         }
         if (obj.type === 'embed') {
@@ -66,9 +66,9 @@ export default function Artist(props) {
         <main className='artist'>
             <nav className="artist-meta">
                 <Link className='artist' to='/'>Picnic</Link>
-                <Link className='readymeals highlight' to='https://www.paypal.me/picniccollective'>Support</Link>
+                <a className='readymeals highlight' href={data[0].artist_support_link}>Support</a>
                 <a className='date' href='#1' onClick={toggleCalendar}><CurrentDate></CurrentDate></a>
-                <a className='collective' href='#1'>{data[0].artist_name}</a>
+                <a className='collective' href={data[0].artist_website}>{data[0].artist_name}</a>
             </nav>
             <div className='artist-grid'>
                 {items}
