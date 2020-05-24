@@ -64,6 +64,10 @@
   pointer-events: none;
 }
 
+.artist-grid .object iframe {
+  pointer-events: all !important;
+}
+
 .object[data-selected='true'] iframe{
   pointer-events: all;
 }
