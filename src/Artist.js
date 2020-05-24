@@ -16,7 +16,6 @@ function renderObjects(tree) {
             gridColumn: `${obj.x} / ${obj.x + obj.w}`,
             gridRow: `${obj.y} / ${obj.y + obj.h}`
         }
-        console.log(obj)
         if (obj.type === 'img') {
             objectStyle.backgroundImage = `url(${obj.src})`
         }
@@ -36,7 +35,7 @@ function renderObjects(tree) {
             objectStyle.fontWeight = obj.fontWeight;
         }
         if (obj.type === 'embed') {
-            content = <iframe title={`embed-${key}`} width="560" height="315" src="https://www.youtube.com/embed/IyNrcayUNfg?controls=0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            content = <iframe title={`embed-${key}`} width="560" height="315" src={obj.url} frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         }
 
         const element = <div style={objectStyle} key={`obj-${key}`} className={`object ${obj.type}`}>
