@@ -35,7 +35,7 @@ function renderObjects(tree) {
             objectStyle.fontWeight = obj.fontWeight;
         }
         if (obj.type === 'embed') {
-            content = <iframe title={`embed-${key}`} width="560" height="315" src={obj.url} frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            content = <iframe title={`embed-${key}`} width="560" height="315" src={obj.url} frameBorder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
         }
 
         const element = <div style={objectStyle} key={`obj-${key}`} className={`object ${obj.type}`}>
