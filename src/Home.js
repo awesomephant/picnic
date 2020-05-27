@@ -11,10 +11,11 @@ import {
 } from "react-router-dom";
 
 export default function Home(props) {
-    const [calendarActive, setCalendarActive] = useState(false);
+    const [calendarActive, setCalendarActive] = useState(true);
     const [bottomChyronActive, setBottomChyronActive] = useState(false);
     const [topChyronActive, setTopChyronActive] = useState(false);
     const [idleTime, setIdleTime] = useState(0);
+    let currentResidency = null;
 
     function incrementIdleTime() {
         setIdleTime(idleTime => idleTime + 1)
@@ -24,6 +25,11 @@ export default function Home(props) {
         window.setInterval(incrementIdleTime, 1000)
     }, [])
 
+    props.calendar.forEach(row => {
+        if (row.active === "Yes") {
+            currentResidency = row.id
+        }
+    })
     function toggleCalendar() {
         setIdleTime(0)
         if (calendarActive === true) {
@@ -53,7 +59,7 @@ export default function Home(props) {
     return (
         <main onClick={() => setIdleTime(0)}>
             <nav className='site-nav' data-bottomchyron={bottomChyronActive} data-topchyron={topChyronActive}>
-                <Link className='artist highlight' to="/artist/">R1</Link>
+                <Link className='artist highlight' to={`/residency/${currentResidency}`}>R1</Link>
                 <a className='readymeals' href='#1' onClick={toggleTopChyron}>Ready Meals</a>
                 <a className='date' href="#1" onClick={toggleCalendar}><CurrentDate></CurrentDate></a>
                 <a className='collective' href="#1" onClick={toggleBottomChyron}>Collective</a>
@@ -65,7 +71,7 @@ export default function Home(props) {
             <Cloth></Cloth>
             {calendarActive === true &&
                 <Window width='18rem' title='Calendar' x={200} y={400} className='window' draggable={false}>
-                    <Calendar></Calendar>
+                    <Calendar calendar={props.calendar}></Calendar>
                 </Window>
             }
             <Chyron position='top' direction='ltr' active={topChyronActive}>

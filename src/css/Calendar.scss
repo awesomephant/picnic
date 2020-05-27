@@ -1,0 +1,17 @@
+.calendar {
+    width: 100%;
+    tr {
+        border-bottom: 1px solid black;
+        &:last-of-type {
+            border-bottom: 0;
+        }
+        &[data-past="true"]{
+            color: gray;
+        }
+    }
+    td {
+        width: 50%;
+        vertical-align: top;
+        padding: .2em 0;
+    }
+}
