@@ -59,7 +59,9 @@ export default function Home(props) {
     return (
         <main onClick={() => setIdleTime(0)}>
             <nav className='site-nav' data-bottomchyron={bottomChyronActive} data-topchyron={topChyronActive}>
-                <Link className='artist highlight' to={`/residency/${currentResidency}`}>R1</Link>
+                {currentResidency !== null &&
+                    <Link className='artist highlight' to={`/residency/${currentResidency}`}>R1</Link>
+                }
                 <a className='readymeals' href='#1' onClick={toggleTopChyron}>Ready Meals</a>
                 <a className='date' href="#1" onClick={toggleCalendar}><CurrentDate></CurrentDate></a>
                 <a className='collective' href="#1" onClick={toggleBottomChyron}>Collective</a>

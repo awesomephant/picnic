@@ -20,7 +20,6 @@ function App() {
       .then(res => res.text())
       .then(body => {
         parse(body, { columns: true }, function (err, data) {
-          console.log(`${data.length} calendar entries found.`)
           updateCalendar(data)
         })
       });
