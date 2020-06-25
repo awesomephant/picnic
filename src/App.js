@@ -15,7 +15,7 @@ import {
 function App() {
   const [calendar, updateCalendar] = useState([])
   function pullCalendar() {
-    const sheetURL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vS1jPOtPG21i16eRGOMBtDYJgFq1WlweNExCQ34Ui1bUtZ1aFad_yjA41sjc5-vjONVblFuJFWusWmW/pub?gid=0&single=true&output=csv"
+    const sheetURL = "https://cors-anywhere.herokuapp.com/https://docs.google.com/spreadsheets/d/e/2PACX-1vS1jPOtPG21i16eRGOMBtDYJgFq1WlweNExCQ34Ui1bUtZ1aFad_yjA41sjc5-vjONVblFuJFWusWmW/pub?gid=0&single=true&output=csv"
     fetch(sheetURL)
       .then(res => res.text())
       .then(body => {

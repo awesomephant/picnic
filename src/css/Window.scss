@@ -7,7 +7,7 @@
     background: white;
     z-index: 1000;
     box-shadow: 2px 2px 0 black;
-    width: 14rem;
+    width: 16rem;
     font-size: 16px;
 }
 
@@ -26,4 +26,6 @@
 
 .window-body {
     padding: .2rem;
+    max-height: 20rem;
+    overflow-y: auto;
 }

@@ -7,8 +7,16 @@ export default function Calendar(props) {
     if (props.calendar.map){
         rows = props.calendar.map((d, i) => {
             const date = dayjs(d.date);
+            let name = null;
+            if (date.isBefore(dayjs())){
+                name = <a href={"/residency/" + i}>{d.artist_name}</a>
+            } else {
+                name = d.artist_name
+            }
             return (
-                <tr data-past={date.isBefore(dayjs())} key={"row-" + i} ><td>{d.date}</td><td>{d.artist_name}</td></tr>
+                <tr data-past={date.isBefore(dayjs())} key={"row-" + i} ><td>{d.date}</td><td>
+                    {name}
+                    </td></tr>
             )
         })
     }

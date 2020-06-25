@@ -72,7 +72,7 @@ export default function Home(props) {
             </h1>
             <Cloth></Cloth>
             {calendarActive === true &&
-                <Window width='18rem' title='Calendar' x={200} y={400} className='window' draggable={false}>
+                <Window width='20rem' title='Calendar' x={200} y={400} className='window' draggable={false}>
                     <Calendar calendar={props.calendar}></Calendar>
                 </Window>
             }
