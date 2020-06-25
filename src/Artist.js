@@ -46,18 +46,6 @@ function renderObjects(tree) {
     return objects;
 }
 
-function getRowById(data, id) {
-    console.log(`Searching ${data.length}`)
-    data.forEach(row => {
-        if (row.id.toString() === id.toString()) {
-            console.log('found')
-            console.log(row)
-            return row
-        }
-    })
-    return false;
-}
-
 export default function Artist(props) {
     let { id } = useParams();
     const residency = props.calendar[parseInt(id)];
