@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import Editor from './Editor';
 import Home from './Home';
 import Artist from './Artist';
-import parse from 'csv-parse';
 
 
 import {
@@ -15,13 +14,12 @@ import {
 function App() {
   const [calendar, updateCalendar] = useState([])
   function pullCalendar() {
-    const sheetURL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vS1jPOtPG21i16eRGOMBtDYJgFq1WlweNExCQ34Ui1bUtZ1aFad_yjA41sjc5-vjONVblFuJFWusWmW/pub?gid=0&single=true&output=csv"
+    const sheetURL = "/calendar.json"
     fetch(sheetURL)
       .then(res => res.text())
       .then(body => {
-        parse(body, { columns: true }, function (err, data) {
-          updateCalendar(data)
-        })
+         const data = JSON.parse(body)
+          updateCalendar(data.data)
       });
   }
   useEffect(() => {
