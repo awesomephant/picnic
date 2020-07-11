@@ -37,6 +37,9 @@ function renderObjects(tree) {
         if (obj.type === 'embed') {
             content = <iframe title={`embed-${key}`} width="560" height="315" src={obj.url} frameBorder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
         }
+        if (obj.type === 'html') {
+            content = <div dangerouslySetInnerHTML={{__html: obj.htmlContent}}></div>
+        }
 
         const element = <div style={objectStyle} key={`obj-${key}`} className={`object ${obj.type}`}>
             {content}
