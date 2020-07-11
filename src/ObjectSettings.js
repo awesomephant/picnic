@@ -20,7 +20,7 @@ export default function ObjectSettings(props) {
                         <input onChange={(e) => handleUpdate(key, e.target.value)} value={p} type='color'></input>
                     </div>
                 )
-            } else if (key === 'text') {
+            } else if (key === 'text' || key === 'htmlContent') {
                 settings.push(
                     <div className='setting'>
                         <label htmlFor={key}>{key}</label>

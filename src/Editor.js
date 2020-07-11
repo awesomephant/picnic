@@ -113,6 +113,8 @@ class Editor extends React.Component {
             obj = { id: id, type: 'embed', url: ' ', x: this.state.placeholder.x + 1, y: this.state.placeholder.y, w: this.state.placeholder.w, h: this.state.placeholder.h }
         } else if (this.state.settings.currentTool === 'rect') {
             obj = { id: id, type: 'rect', background: 'pink', x: this.state.placeholder.x + 1, y: this.state.placeholder.y, w: this.state.placeholder.w, h: this.state.placeholder.h }
+        } else if (this.state.settings.currentTool === 'html') {
+            obj = { id: id, type: 'html', htmlContent: '<h1>your code here</h1>', x: this.state.placeholder.x + 1, y: this.state.placeholder.y, w: this.state.placeholder.w, h: this.state.placeholder.h }
         }
 
         this.setState((prev) => {
@@ -197,6 +199,9 @@ class Editor extends React.Component {
             }
             if (obj.type === 'rect') {
                 objectStyle.background = obj.background
+            }
+            if (obj.type === 'html') {
+                content = <div dangerouslySetInnerHTML={{__html: obj.htmlContent}}></div>
             }
             objects.push(
                 <div onClick={(e) => this.handleObjectClick(obj.id, e)} data-selected={obj.id === this.state.selectedObject} style={objectStyle} key={obj.id} className={`object ${obj.type}`}>

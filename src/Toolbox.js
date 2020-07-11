@@ -6,6 +6,7 @@ const tools = [
     { value: 'img', title: 'Image' },
     { value: 'text', title: 'Text' },
     { value: 'embed', title: 'Embed' },
+    { value: 'html', title: 'HTML' },
     { value: 'edit', title: 'Edit' }
 ]
 
