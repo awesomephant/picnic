@@ -146,7 +146,6 @@ class Editor extends React.Component {
         const cell = (this.w / this.gridSize);
         const cx = Math.ceil((x - r.left) / cell)
         const cy = Math.ceil((y - r.top) / cell)
-        console.log(dx)
         this.setState((prev) => {
             prev.cursor = { x: cx, y: cy };
             prev.mouse = { x: x, y: y, deltaX: dx, deltaY: dy };
