@@ -14,7 +14,7 @@ export default function Calendar(props) {
                 name = d.artist_name
             }
             return (
-                <tr data-past={date.isBefore(dayjs())} key={"row-" + i} ><td>{d.date}</td><td>
+                <tr data-past={date.isBefore(dayjs(), 'day')} key={"row-" + i} ><td>{d.date}</td><td>
                     {name}
                     </td></tr>
             )
