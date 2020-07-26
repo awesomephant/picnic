@@ -23,7 +23,6 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build:pullCalendar": "node pullCalendar.js",
     "build:react": "react-scripts build",
     "build": "run-s build:*",
     "test": "react-scripts test",
