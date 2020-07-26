@@ -25,11 +25,6 @@ export default function Home(props) {
         window.setInterval(incrementIdleTime, 1000)
     }, [])
 
-    props.calendar.forEach(row => {
-        if (row.active === "Yes") {
-            currentResidency = row.id
-        }
-    })
     function toggleCalendar() {
         setIdleTime(0)
         if (calendarActive === true) {
@@ -59,8 +54,8 @@ export default function Home(props) {
     return (
         <main onClick={() => setIdleTime(0)}>
             <nav className='site-nav' data-bottomchyron={bottomChyronActive} data-topchyron={topChyronActive}>
-                {currentResidency !== null &&
-                    <Link className='artist highlight' to={`/residency/${currentResidency}`}>R1</Link>
+                {props.settings.currentResidency !== null &&
+                    <Link className='artist highlight' to={`/residency/${props.settings.currentResidency.slug}`}>R1</Link>
                 }
                 <a className='readymeals' href='#1' onClick={toggleTopChyron}>Ready Meals</a>
                 <a className='date' href="#1" onClick={toggleCalendar}><CurrentDate></CurrentDate></a>
