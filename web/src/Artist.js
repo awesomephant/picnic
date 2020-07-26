@@ -49,11 +49,13 @@ function renderObjects(tree) {
     return objects;
 }
 
+
 export default function Artist(props) {
     let { id } = useParams();
-    const residency = props.calendar[parseInt(id)];
     const [calendarActive, setCalendarActive] = useState(false);
-
+    const residency = props.calendar.find(el => el.slug === id);
+    console.log(residency)
+    
     function toggleCalendar() {
         if (calendarActive === true) {
             setCalendarActive(false)
@@ -66,7 +68,7 @@ export default function Artist(props) {
     if (residency) {
         let items = []
         try {
-            items = renderObjects(JSON.parse(residency.code))
+            items = renderObjects(JSON.parse(residency.code.code))
         } catch (error) {
 
         }

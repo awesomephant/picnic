@@ -10,8 +10,10 @@
 /documentation
 
 # production
-/build
-/src/calendarData.json
+/web/build
+/web/src/calendarData.json
+/web/node_modules
+
 # misc
 .DS_Store
 .env.local
@@ -22,3 +24,6 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+/cms/dist
+/cms/node_modules

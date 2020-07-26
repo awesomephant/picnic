@@ -9,12 +9,12 @@ export default function Calendar(props) {
             const date = dayjs(d.date);
             let name = null;
             if (date.isBefore(dayjs())){
-                name = <a href={"/residency/" + i}>{d.artist_name}</a>
+                name = <a href={"/residency/" + d.slug}>{d.artist_name}</a>
             } else {
                 name = d.artist_name
             }
             return (
-                <tr data-past={date.isBefore(dayjs(), 'day')} key={"row-" + i} ><td>{d.date}</td><td>
+                <tr data-past={date.isBefore(dayjs(), 'day')} key={"row-" + i} ><td>{date.format("MMM DD, YYYY")}</td><td>
                     {name}
                     </td></tr>
             )
