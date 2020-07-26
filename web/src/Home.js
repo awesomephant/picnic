@@ -15,8 +15,6 @@ export default function Home(props) {
     const [bottomChyronActive, setBottomChyronActive] = useState(false);
     const [topChyronActive, setTopChyronActive] = useState(false);
     const [idleTime, setIdleTime] = useState(0);
-    let currentResidency = null;
-
     function incrementIdleTime() {
         setIdleTime(idleTime => idleTime + 1)
     }
