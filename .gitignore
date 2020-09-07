@@ -13,7 +13,6 @@
 /web/build
 /web/src/calendarData.json
 /web/node_modules
-/web/src/data/*.json
 
 # misc
 .DS_Store
