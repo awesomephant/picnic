@@ -7,7 +7,7 @@ export default {
         {
             name: 'currentResidency',
             title: 'Active Residency',
-            description: 'This will be linked on the homepage. Leave empty to link to hide link.',
+            description: 'This will be linked on the homepage. Leave empty to hide the link.',
             type: 'reference',
             to: [{type: 'residency'}]
         },
