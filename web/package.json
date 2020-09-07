@@ -24,6 +24,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
+    "build:pull": "node pullData",
     "build:react": "react-scripts build",
     "build": "run-s build:*",
     "test": "react-scripts test",

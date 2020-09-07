@@ -900,6 +900,18 @@
     make-error "^1.3.0"
     object-assign "^4.1.1"
 
+"@sanity/client@^1.149.13":
+  version "1.150.1"
+  resolved "https://registry.npmjs.org/@sanity/client/-/client-1.150.1.tgz#052ba267d9e8bba21576fbe5a69aa2aeaa0caf22"
+  dependencies:
+    "@sanity/eventsource" "1.150.1"
+    "@sanity/generate-help-url" "1.150.1"
+    "@sanity/observable" "1.150.1"
+    deep-assign "^2.0.0"
+    get-it "^5.0.3"
+    make-error "^1.3.0"
+    object-assign "^4.1.1"
+
 "@sanity/code-input@^1.149.16":
   version "1.149.16"
   resolved "https://registry.npmjs.org/@sanity/code-input/-/code-input-1.149.16.tgz#f3a815c096e209ee1c6b138b87fe5aa86bd480c9"
@@ -1009,6 +1021,15 @@
     postcss-value-parser "^3.3.0"
     source-list-map "^2.0.0"
 
+"@sanity/dashboard@^1.150.4":
+  version "1.150.4"
+  resolved "https://registry.npmjs.org/@sanity/dashboard/-/dashboard-1.150.4.tgz#7a552c51c8cde241043a20388888656d5d1af34d"
+  dependencies:
+    "@sanity/image-url" "^0.140.19"
+    lodash "^4.17.15"
+    react-icons "^2.2.7"
+    rxjs "^6.5.3"
+
 "@sanity/data-aspects@1.149.18":
   version "1.149.18"
   resolved "https://registry.npmjs.org/@sanity/data-aspects/-/data-aspects-1.149.18.tgz#a52853a6bb7d65f4ed17050eac72232a0095a1ee"
@@ -1079,6 +1100,13 @@
     "@rexxars/eventsource-polyfill" "^1.0.0"
     eventsource "^1.0.6"
 
+"@sanity/eventsource@1.150.1":
+  version "1.150.1"
+  resolved "https://registry.npmjs.org/@sanity/eventsource/-/eventsource-1.150.1.tgz#4ccfbbe3936f411c7f15b65674446f46e31cba2a"
+  dependencies:
+    "@rexxars/eventsource-polyfill" "^1.0.0"
+    eventsource "^1.0.6"
+
 "@sanity/export@1.149.18":
   version "1.149.18"
   resolved "https://registry.npmjs.org/@sanity/export/-/export-1.149.18.tgz#897996d01ba4ac5112ad11d32140d8b2d6c872e3"
@@ -1138,9 +1166,19 @@
   version "1.149.16"
   resolved "https://registry.npmjs.org/@sanity/generate-help-url/-/generate-help-url-1.149.16.tgz#5decbe98a480f23a6dd6713ff6b018bdf512455e"
 
+"@sanity/generate-help-url@1.150.1":
+  version "1.150.1"
+  resolved "https://registry.npmjs.org/@sanity/generate-help-url/-/generate-help-url-1.150.1.tgz#bc0bda74cd0980e2194d275369e0ebc7970a0a81"
+
 "@sanity/image-url@0.140.15":
   version "0.140.15"
   resolved "https://registry.npmjs.org/@sanity/image-url/-/image-url-0.140.15.tgz#7b8afc49130398e1a6e7bde03b5961d2384f7676"
+
+"@sanity/image-url@^0.140.19":
+  version "0.140.19"
+  resolved "https://registry.npmjs.org/@sanity/image-url/-/image-url-0.140.19.tgz#6adfea7b7768a1708eba6bdcfe9eb0746d2bb1f9"
+  dependencies:
+    "@sanity/client" "^1.149.13"
 
 "@sanity/imagetool@1.149.18":
   version "1.149.18"
@@ -1201,6 +1239,13 @@
     object-assign "^4.1.1"
     rxjs "^6.5.3"
 
+"@sanity/observable@1.150.1":
+  version "1.150.1"
+  resolved "https://registry.npmjs.org/@sanity/observable/-/observable-1.150.1.tgz#e077a7da3d85a863b80023bcc1a13470dba2ac11"
+  dependencies:
+    object-assign "^4.1.1"
+    rxjs "^6.5.3"
+
 "@sanity/plugin-loader@1.149.18":
   version "1.149.18"
   resolved "https://registry.npmjs.org/@sanity/plugin-loader/-/plugin-loader-1.149.18.tgz#536dd8cb803496e4a389017f9474cfd5b776bd79"
@@ -1221,6 +1266,10 @@
     react-props-stream "^1.0.0"
     rxjs "^6.5.3"
     shallow-equals "^1.0.0"
+
+"@sanity/production-preview@^1.150.1":
+  version "1.150.1"
+  resolved "https://registry.npmjs.org/@sanity/production-preview/-/production-preview-1.150.1.tgz#204d1ce8d1f078bd89f05f6197fc71d8052a4dd1"
 
 "@sanity/react-hooks@1.149.18":
   version "1.149.18"
@@ -1425,6 +1474,12 @@
 abab@^2.0.0:
   version "2.0.3"
   resolved "https://registry.npmjs.org/abab/-/abab-2.0.3.tgz#623e2075e02eb2d3f2475e49f99c91846467907a"
+
+abort-controller@^2.0.3:
+  version "2.0.3"
+  resolved "https://registry.npmjs.org/abort-controller/-/abort-controller-2.0.3.tgz#b174827a732efadff81227ed4b8d1cc569baf20a"
+  dependencies:
+    event-target-shim "^5.0.0"
 
 accepts@~1.3.7:
   version "1.3.7"
@@ -3240,6 +3295,10 @@ event-emitter@~0.3.5:
   dependencies:
     d "1"
     es5-ext "~0.10.14"
+
+event-target-shim@^5.0.0:
+  version "5.0.1"
+  resolved "https://registry.npmjs.org/event-target-shim/-/event-target-shim-5.0.1.tgz#5d4d3ebdf9583d63a5333ce2deb7480ab2b05789"
 
 events@^3.0.0:
   version "3.2.0"
@@ -6942,6 +7001,19 @@ safe-regex@^1.1.0:
 same-origin@^0.1.1:
   version "0.1.1"
   resolved "https://registry.npmjs.org/same-origin/-/same-origin-0.1.1.tgz#c2287d3192577df517acbbd6d1451a9c3c3914f5"
+
+sanity-plugin-dashboard-widget-document-list@^0.0.11:
+  version "0.0.11"
+  resolved "https://registry.npmjs.org/sanity-plugin-dashboard-widget-document-list/-/sanity-plugin-dashboard-widget-document-list-0.0.11.tgz#1533a7d35f95f1265cb4777dac770dfd53a426cb"
+  dependencies:
+    lodash "^4.17.15"
+
+sanity-plugin-dashboard-widget-netlify@^1.0.1:
+  version "1.0.1"
+  resolved "https://registry.npmjs.org/sanity-plugin-dashboard-widget-netlify/-/sanity-plugin-dashboard-widget-netlify-1.0.1.tgz#e510e40e05b9bcfdf11a4a2affed590e191bb93b"
+  dependencies:
+    abort-controller "^2.0.3"
+    react-props-stream "^1.0.0"
 
 sax@~1.2.4:
   version "1.2.4"
