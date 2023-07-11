@@ -1,0 +1,66 @@
+@keyframes chyron {
+  from {
+    transform: translateX(100vw);
+  }
+
+  to {
+    transform: translateX(-100%);
+  }
+}
+
+.chyron-top {
+  top: 0em;
+  transform-origin: top;
+}
+
+.chyron-bottom {
+  bottom: 0em;
+  transform-origin: bottom;
+}
+
+.chyron {
+  background: var(--black);
+  position: absolute;
+  font-variation-settings: "wght" 450, "wdth" 105;
+  width: 100vw;
+  letter-spacing: 0.02em;
+  overflow: hidden;
+  color: white;
+  font-size: 3rem;
+  white-space: nowrap;
+  transform: scaleY(0);
+  transition: 200ms;
+  text-transform: uppercase;
+}
+
+.chyron i {
+  display: inline-block;
+  transform: scale(1.4) translateY(-0.14em);
+  margin-right: 1em;
+}
+
+.chyron a {
+  color: white;
+  margin-right: 1em;
+  text-decoration: none;
+  border: 2px solid transparent;
+
+  &:hover,
+  &:focus {
+    border: 2px solid white;
+    border-radius: 100%;
+  }
+}
+
+.chyron[data-active="true"] {
+  transform: scaleY(1);
+}
+
+.chyron span {
+  display: inline-flex;
+  animation: chyron 30s linear infinite both;
+}
+
+.chyron[data-direction="ltr"] span {
+  animation: chyron 30s linear infinite both reverse;
+}

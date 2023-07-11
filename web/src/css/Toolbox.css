@@ -1,0 +1,25 @@
+.toolbox ul {
+  border: 1px solid black;
+}
+.toolbox li {
+  border-bottom: 1px solid black;
+  list-style: none;
+  display: flex;
+  padding: 0.3rem;
+  align-items: center;
+  cursor: pointer;
+}
+.toolbox li[data-active="true"] {
+  background-color: black;
+  color: white;
+}
+
+.toolbox li:hover,
+.toolbox li:focus {
+  background-color: black;
+  color: white;
+}
+
+.toolbox li:last-child {
+  border-bottom: 0;
+}

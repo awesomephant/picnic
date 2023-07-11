@@ -4,21 +4,22 @@
   "private": true,
   "dependencies": {
     "@mdi/js": "^7.2.96",
+    "@react-three/fiber": "^8.13.4",
     "@sanity/client": "^6.1.7",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^14.0.0",
     "@testing-library/user-event": "^14.4.3",
+    "@types/three": "^0.153.0",
     "csv": "^6.3.1",
     "dayjs": "^1.11.9",
     "node-fetch": "^3.3.1",
-    "node-sass": "^9.0.0",
     "npm-run-all": "^4.1.5",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-loading-skeleton": "^3.3.1",
     "react-router-dom": "^6.14.1",
     "react-scripts": "5.0.1",
-    "react-three-fiber": "^6.0.13",
+    "sass": "^1.63.6",
     "slugify": "^1.6.6",
     "three": "^0.154.0"
   },
@@ -26,12 +27,9 @@
     "start": "react-scripts start",
     "build:pull": "node pullData",
     "build:react": "react-scripts build",
-    "build": "run-s build:*",
+    "build": "run-s 'build:*'",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
-  },
-  "eslintConfig": {
-    "extends": "react-app"
   },
   "browserslist": {
     "production": [

@@ -1,9 +1,8 @@
 :root {
   --yellow: rgb(251, 251, 31);
-  --purple: #C297FF;
+  --purple: #c297ff;
   --black: rgb(6, 6, 7);
 }
-
 
 @font-face {
   font-family: "chicago";
@@ -12,19 +11,18 @@
 
 @font-face {
   font-family: "acumin-variable";
-  src: url("../fonts/AcuminVariableConcept.otf")
+  src: url("../fonts/AcuminVariableConcept.otf");
 }
 
 @keyframes blink {
   from {
-    color: black
+    color: black;
   }
 
   to {
-    color: var(--yellow)
+    color: var(--yellow);
   }
 }
-
 
 * {
   margin: 0;
@@ -62,72 +60,64 @@ body {
   font-size: 0;
   pointer-events: none;
   transform: translateX(-50%) translateY(-80%);
-
-  img {
-    width: 30vh;
-  }
+}
+.site-title img {
+  width: 30vh;
+  display: block;
 }
 
-.site-nav,
-.artist-meta {
-  a {
-    color: rgba(13, 11, 22, .9);
-    position: fixed;
-    letter-spacing: .01em;
-    font-variation-settings: 'wght'500, 'wdth'105;
-    text-transform: uppercase;
-    text-decoration: none;
-    font-size: 3rem;
-    border-radius: 100%;
-    z-index: 1000;
-    transition: bottom 300ms, top 300ms;
-    border: 2px solid transparent;
-
-    &.highlight {
-      animation: blink 2s alternate infinite both;
-    }
-
-    &:hover,
-    &:focus {
-      border: 2px solid black;
-    }
-
-    &.artist {
-      left: 2rem;
-      top: 2rem;
-    }
-
-    &.readymeals {
-      right: 2rem;
-      top: 2rem;
-    }
-
-    &.date {
-      left: 2rem;
-      bottom: 2rem;
-    }
-
-    &.collective {
-      right: 2rem;
-      bottom: 2rem;
-    }
-  }
+.site-nav a,
+.artist-meta a {
+  color: rgba(13, 11, 22, 0.9);
+  position: fixed;
+  letter-spacing: 0.01em;
+  font-variation-settings: "wght" 500, "wdth" 105;
+  text-transform: uppercase;
+  text-decoration: none;
+  font-size: 3rem;
+  border-radius: 100%;
+  z-index: 1000;
+  transition: bottom 300ms, top 300ms;
+  border: 2px solid transparent;
 }
 
-[data-bottomchyron="true"] {
-
-  a.collective,
-  a.date {
-    bottom: 5rem;
-  }
+.site-nav a.highlight {
+  animation: blink 2s alternate infinite both;
 }
 
-[data-topchyron="true"] {
+.site-nav a:hover,
+.site-nav a:focus {
+  border: 2px solid black;
+}
 
-  a.artist,
-  a.readymeals {
-    top: 5rem;
-  }
+a.artist {
+  left: 2rem;
+  top: 2rem;
+}
+
+a.readymeals {
+  right: 2rem;
+  top: 2rem;
+}
+
+a.date {
+  left: 2rem;
+  bottom: 2rem;
+}
+
+a.collective {
+  right: 2rem;
+  bottom: 2rem;
+}
+
+[data-bottomchyron="true"] a.collective,
+[data-bottomchyron="true"] a.date {
+  bottom: 5rem;
+}
+
+[data-topchyron="true"] a.artist,
+[data-topchyron="true"] a.readymeals {
+  top: 5rem;
 }
 
 .popover {

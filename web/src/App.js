@@ -1,16 +1,11 @@
-import React, { useEffect, useState } from 'react';
-import Editor from './Editor';
-import Home from './Home';
-import Artist from './Artist';
-import residencies from './data/residencies.json';
-import currentSettings from './data/settings.json';
+import React, { useEffect, useState } from "react"
+import Editor from "./Editor"
+import Home from "./Home"
+import Artist from "./Artist"
+import residencies from "./data/residencies.json"
+import currentSettings from "./data/settings.json"
 
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-} from "react-router-dom";
-
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom"
 
 function App() {
   const [calendar, updateCalendar] = useState([])
@@ -26,24 +21,13 @@ function App() {
 
   return (
     <Router>
-      <Switch>
-
-        <Route path='/residency/:id'>
-          {<Artist calendar={calendar} />}
-        </Route>
-
-        <Route path='/editor'>
-          <Editor></Editor>
-        </Route>
-
-        <Route path='/'>
-          <Home calendar={calendar} settings={settings}></Home>
-        </Route>
-
-      </Switch>
-
+      <Routes>
+        <Route path="/residency/:id" element={<Artist calendar={calendar} />} />
+        <Route path="/editor" element={<Editor />} />
+        <Route path="/" element={<Home calendar={calendar} settings={settings} />} />
+      </Routes>
     </Router>
-  );
+  )
 }
 
-export default App;
+export default App

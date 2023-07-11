@@ -1,0 +1,45 @@
+.settings {
+  width: 100%;
+}
+.settings button {
+  appearance: none;
+  background: 0;
+  width: 100%;
+  padding: 0.3rem;
+  border: 1px solid black;
+  border-radius: 6px;
+  font-family: chicago;
+}
+
+.settings button:hover {
+  cursor: pointer;
+}
+.settings button.danger:hover {
+  background: red;
+}
+
+.settings .toggle[data-active="true"] {
+  background: black;
+  color: white;
+}
+
+.settings input,
+.settings textarea {
+  border: 1px solid black;
+  border-radius: 2px;
+  font-family: chicago;
+  padding: 0.2em;
+  color: black;
+  width: 100%;
+  line-height: 0.9;
+}
+
+.settings label {
+  display: block;
+  margin-bottom: 0.1rem;
+  text-transform: capitalize;
+}
+
+.setting {
+  margin-bottom: 0.2rem;
+}

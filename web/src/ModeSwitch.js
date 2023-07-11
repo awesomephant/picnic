@@ -1,5 +1,5 @@
-function ModeSwitch(){
-    return null
+function ModeSwitch() {
+  return null
 }
 
-export default ModeSwitch;
+export default ModeSwitch
