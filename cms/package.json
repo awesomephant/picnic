@@ -1,10 +1,10 @@
 {
-  "name": "picnic",
+  "name": "cms",
   "private": true,
   "version": "1.0.0",
   "description": "",
   "main": "package.json",
-  "author": "Max Kohler <max@koehler-kn.de>",
+  "author": "Max Kohler <hello@maxkohler.com>",
   "license": "UNLICENSED",
   "scripts": {
     "start": "sanity start",
@@ -29,6 +29,5 @@
     "react-dom": "^16.2",
     "sanity-plugin-dashboard-widget-document-list": "^0.0.11",
     "sanity-plugin-dashboard-widget-netlify": "^1.0.1"
-  },
-  "devDependencies": {}
+  }
 }
